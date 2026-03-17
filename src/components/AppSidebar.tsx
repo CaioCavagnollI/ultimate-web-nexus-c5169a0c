@@ -69,7 +69,7 @@ export function AppSidebar() {
           {!collapsed && <span className="font-display font-bold text-lg">Nexus</span>}
         </div>
         {groups.map((group) => (
-          <SidebarGroup key={group.label} defaultOpen>
+          <SidebarGroup key={group.label}>
             <SidebarGroupLabel className="text-xs uppercase tracking-wider text-muted-foreground/60">
               {!collapsed && group.label}
             </SidebarGroupLabel>
