@@ -3,11 +3,16 @@ import { AppSidebar } from "@/components/AppSidebar";
 import { Outlet, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { LogOut } from "lucide-react";
+import { useAuth } from "@/hooks/useAuth";
+import { toast } from "sonner";
 
 export default function Layout() {
   const navigate = useNavigate();
+  const { signOut, user } = useAuth();
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    await signOut();
+    toast.success("Logout realizado.");
     navigate("/");
   };
 
@@ -19,7 +24,9 @@ export default function Layout() {
           <header className="h-14 flex items-center justify-between border-b border-border px-4 bg-card/40 backdrop-blur-sm">
             <SidebarTrigger className="text-muted-foreground hover:text-foreground" />
             <div className="flex items-center gap-2">
-              <span className="text-xs text-muted-foreground font-sans">Nexus — Science & Strength</span>
+              <span className="text-xs text-muted-foreground font-sans truncate max-w-[200px]">
+                {user?.email ?? "Nexus — Science & Strength"}
+              </span>
               <Button variant="ghost" size="sm" onClick={handleLogout} className="text-muted-foreground hover:text-foreground">
                 <LogOut className="h-4 w-4" />
               </Button>
