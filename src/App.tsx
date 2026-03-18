@@ -3,6 +3,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { AuthProvider } from "@/hooks/useAuth";
+import ProtectedRoute from "@/components/ProtectedRoute";
 
 import LandingPage from "./pages/LandingPage";
 import AuthPage from "./pages/AuthPage";
@@ -43,42 +45,44 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<LandingPage />} />
-          <Route path="/auth" element={<AuthPage />} />
-          <Route path="/termos" element={<TermsPage />} />
-          <Route path="/privacidade" element={<PrivacyPage />} />
+        <AuthProvider>
+          <Routes>
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/auth" element={<AuthPage />} />
+            <Route path="/termos" element={<TermsPage />} />
+            <Route path="/privacidade" element={<PrivacyPage />} />
 
-          {/* Protected routes with sidebar layout */}
-          <Route element={<Layout />}>
-            <Route path="/dashboard" element={<DashboardPage />} />
-            <Route path="/feed" element={<FeedPage />} />
-            <Route path="/ai-mentor" element={<AIMentorPage />} />
-            <Route path="/chat" element={<ChatPage />} />
-            <Route path="/scanner" element={<ScannerPage />} />
-            <Route path="/anamnese" element={<AnamnesePage />} />
-            <Route path="/prescricao" element={<PrescriptionPage />} />
-            <Route path="/premium" element={<NexusPremiumPage />} />
-            <Route path="/treinamento-pro" element={<TrainingProPage />} />
-            <Route path="/editorial-pro" element={<EditorialProPage />} />
-            <Route path="/nutricao-pro" element={<NutriProPage />} />
-            <Route path="/coach-pro" element={<CoachProPage />} />
-            <Route path="/lab" element={<NexusLabPage />} />
-            <Route path="/academico" element={<AcademicPage />} />
-            <Route path="/biblioteca" element={<LibraryPage />} />
-            <Route path="/loja" element={<StorePage />} />
-            <Route path="/programas" element={<TrainingProgramsPage />} />
-            <Route path="/forum" element={<ForumPage />} />
-            <Route path="/uploads" element={<UploadsPage />} />
-            <Route path="/afiliados" element={<AffiliatesPage />} />
-            <Route path="/integracoes" element={<IntegrationsPage />} />
-            <Route path="/perfil" element={<ProfilePage />} />
-            <Route path="/pricing" element={<PricingPage />} />
-            <Route path="/admin" element={<AdminPage />} />
-          </Route>
+            {/* Protected routes with sidebar layout */}
+            <Route element={<ProtectedRoute><Layout /></ProtectedRoute>}>
+              <Route path="/dashboard" element={<DashboardPage />} />
+              <Route path="/feed" element={<FeedPage />} />
+              <Route path="/ai-mentor" element={<AIMentorPage />} />
+              <Route path="/chat" element={<ChatPage />} />
+              <Route path="/scanner" element={<ScannerPage />} />
+              <Route path="/anamnese" element={<AnamnesePage />} />
+              <Route path="/prescricao" element={<PrescriptionPage />} />
+              <Route path="/premium" element={<NexusPremiumPage />} />
+              <Route path="/treinamento-pro" element={<TrainingProPage />} />
+              <Route path="/editorial-pro" element={<EditorialProPage />} />
+              <Route path="/nutricao-pro" element={<NutriProPage />} />
+              <Route path="/coach-pro" element={<CoachProPage />} />
+              <Route path="/lab" element={<NexusLabPage />} />
+              <Route path="/academico" element={<AcademicPage />} />
+              <Route path="/biblioteca" element={<LibraryPage />} />
+              <Route path="/loja" element={<StorePage />} />
+              <Route path="/programas" element={<TrainingProgramsPage />} />
+              <Route path="/forum" element={<ForumPage />} />
+              <Route path="/uploads" element={<UploadsPage />} />
+              <Route path="/afiliados" element={<AffiliatesPage />} />
+              <Route path="/integracoes" element={<IntegrationsPage />} />
+              <Route path="/perfil" element={<ProfilePage />} />
+              <Route path="/pricing" element={<PricingPage />} />
+              <Route path="/admin" element={<AdminPage />} />
+            </Route>
 
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </AuthProvider>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
