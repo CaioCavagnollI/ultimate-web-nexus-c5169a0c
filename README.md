@@ -1,159 +1,71 @@
-# Nexus FitLab
+# Nexus — Science & Strength
 
-Plataforma digital para **treinamento de força baseado em evidência científica**, integrando prescrição inteligente, IA especializada, scanner biomecânico, biblioteca científica e marketplace fitness.
-
----
-
-## Visão do Projeto
-
-O **Nexus FitLab** é um ecossistema científico de musculação que une:
-
-* Prescrição de treino baseada em evidência
-* Inteligência artificial especializada
-* Scanner biomecânico
-* Biblioteca científica
-* Comunidade profissional
-* Marketplace fitness
-
-Arquitetura preparada para:
-
-* Web App
-* PWA
-* Mobile App
-
----
+Plataforma científica web-first para musculação baseada em evidência, combinando prescrição técnica, avaliação inteligente, IA contextualizada, biblioteca premium e camada de performance social.
 
 ## Stack Tecnológica
 
-**Frontend**
-
-* React 18
-* TypeScript
-* Vite
-* React Router
-* TailwindCSS
-* shadcn/ui
-* TanStack Query
-
-**Backend**
-
-* Supabase
-* PostgreSQL
-* Edge Functions
-* Storage
-
-**Testes**
-
-* Vitest
-* Playwright
-
----
+| Camada | Tecnologia |
+|--------|-----------|
+| Frontend | React 18 + Vite + TypeScript |
+| UI | Tailwind CSS + shadcn/ui + Radix UI |
+| Backend | Supabase (Lovable Cloud) — Auth, Database, Storage, Edge Functions |
+| State | TanStack React Query |
+| Routing | React Router v6 |
+| Design | Playfair Display + Inter, tema dark premium com gold accent |
+| Testes | Vitest + Playwright |
 
 ## Estrutura do Repositório
 
-```text
-.
-├── apps
-│   ├── web
-│   └── admin
-│
-├── packages
-│   ├── ui
-│   ├── ai
-│   ├── scanner
-│   ├── prescription
-│   ├── types
-│   └── utils
-│
-├── supabase
-│   ├── migrations
-│   └── functions
-│
-├── docs
-│   ├── architecture
-│   ├── database
-│   ├── product
-│   └── screenshots
-│
-└── README.md
+```
+src/
+├── components/         # Componentes reutilizáveis
+│   ├── ui/            # shadcn/ui components
+│   ├── AppSidebar.tsx # Sidebar principal
+│   ├── Layout.tsx     # Layout autenticado
+│   ├── PageShell.tsx  # Shell padrão de página
+│   ├── StatCard.tsx   # Card de estatísticas
+│   ├── DomainCard.tsx # Card de módulo/domínio
+│   ├── EmptyState.tsx # Estado vazio reutilizável
+│   └── ProtectedRoute.tsx
+├── hooks/             # Custom hooks (useAuth, etc.)
+├── integrations/      # Supabase client + types
+├── pages/             # Todas as páginas
+├── lib/               # Utilitários
+└── index.css          # Design tokens
+
+public/brand/          # Assets de marca
+content/authored/      # Manifests de conteúdo autoral
+docs/                  # Documentação de produto e arquitetura
+supabase/              # Migrations, functions, config
 ```
 
----
+## Módulos do Produto
 
-## Principais Módulos
+### Camada Pública
+Landing, Pricing, Termos, Privacidade, Contato
 
-**Treinamento**
+### Camada Autenticada
+Dashboard, Hoje, Onboarding, Perfil, Configurações, AI Mentor, Chat IA, Atlas Scanner, Anamnese, Prescrição, Clientes, Nexus Lab, Acadêmico, Biblioteca, Programas, Loja, Fórum, Performance, Uploads, Afiliados, Integrações, Billing, Mentorias Pro, Admin
 
-* Anamnese
-* Prescrição
-* Treinamento Pro
+### Infraestrutura
+- Auth real com Supabase (email/senha + Google OAuth)
+- RLS policies para isolamento de dados
+- Storage com URLs assinadas
+- Edge Functions para AI chat
+- Profiles com auto-criação via trigger
 
-**Inteligência Artificial**
-
-* AI Mentor
-* Chat IA
-
-**Ferramentas**
-
-* Atlas Scanner
-* Nexus Lab
-
-**Conteúdo**
-
-* Biblioteca
-* Acadêmico
-
-**Comunidade**
-
-* Feed
-* Fórum
-
-**Monetização**
-
-* Loja
-* Programas
-* Afiliados
-
----
-
-## Instalação
-
-Instalar dependências
+## Comandos
 
 ```bash
-npm install
+npm run dev       # Desenvolvimento
+npm run build     # Build
+npm run preview   # Preview
 ```
 
-Rodar ambiente de desenvolvimento
+## Documentação
 
-```bash
-npm run dev
-```
-
-Build
-
-```bash
-npm run build
-```
-
-Preview
-
-```bash
-npm run preview
-```
-
----
-
-## Deploy
-
-Ambientes recomendados:
-
-* Vercel
-* Replit
-* Netlify
-
----
+Consulte `docs/` para documentação completa.
 
 ## Licença
 
-Definir.
+Proprietária.
