@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "source_priority": "authorial_pt_br_first",
+  "destinations": ["rag", "prescription_engine", "anamnesis"],
+  "preferred_chunk_units": [
+    "chapter",
+    "subchapter",
+    "technical_section",
+    "rules_table",
+    "faq_block"
+  ],
+  "priority_topics": [
+    "training_fundamentals",
+    "principles",
+    "volume",
+    "intensity",
+    "frequency",
+    "progression",
+    "periodization",
+    "methods",
+    "hypertrophy",
+    "strength",
+    "power",
+    "rml",
+    "special_populations",
+    "injuries_and_restrictions"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "source_priority": "authorial_pt_br_first",
+  "destinations": ["anamnesis"],
+  "question_groups": [
+    "identification_and_context",
+    "main_goal",
+    "training_history",
+    "availability",
+    "equipment_and_environment",
+    "limitations_pain_injuries",
+    "health_and_red_flags",
+    "preferences_and_aversions",
+    "recovery_and_lifestyle",
+    "adherence_and_behavior"
+  ]
+}

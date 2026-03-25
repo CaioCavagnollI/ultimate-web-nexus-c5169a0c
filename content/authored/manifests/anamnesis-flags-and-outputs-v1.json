@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "name": "anamnesis-flags-and-outputs-v1",
+  "flags": [
+    "red_flag_medical",
+    "current_pain_flag",
+    "movement_limitation_flag",
+    "low_adherence_risk",
+    "low_recovery_flag",
+    "low_equipment_flag",
+    "beginner_technique_flag",
+    "obesity_special_attention",
+    "elderly_special_attention",
+    "athlete_specificity_flag"
+  ],
+  "outputs": [
+    "standard_flow",
+    "adapted_flow",
+    "additional_evaluation_required",
+    "recommended_split",
+    "initial_volume",
+    "recommended_complexity",
+    "exercise_priorities",
+    "groups_to_emphasize",
+    "groups_to_protect",
+    "coach_notes"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "targets": {
+    "prescription_engine": {
+      "primary_sources": [
+        "LIVRO_FINAL_PDF.pdf",
+        "LIVRO3ED1pdf.PDF"
+      ],
+      "extract_as": [
+        "rules",
+        "tables",
+        "decision-criteria",
+        "progression-logic",
+        "exercise-selection",
+        "contraindication-notes"
+      ],
+      "rule_buckets": [
+        "objetivo",
+        "nível",
+        "volume",
+        "intensidade",
+        "frequência",
+        "progressão",
+        "deload",
+        "restrições",
+        "lesões",
+        "equipamentos"
+      ]
+    }
+  }
+}

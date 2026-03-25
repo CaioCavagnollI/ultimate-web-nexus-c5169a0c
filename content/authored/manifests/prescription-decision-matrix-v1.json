@@ -1,0 +1,6 @@
+{
+  "version": 1,
+  "name": "prescription-decision-matrix-v1",
+  "dimensions": ["goal", "level", "weekly_frequency", "equipment", "restrictions", "recovery", "adherence"],
+  "outputs": ["split", "initial_volume", "rep_strategy", "progression_strategy", "deload_attention", "exercise_preferences", "exercise_substitutions"]
+}
