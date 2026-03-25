@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "goals": {
+    "hypertrophy": {"priority": ["adherence", "effective_volume", "execution_consistency"]},
+    "strength": {"priority": ["specificity", "relative_intensity", "technique", "recovery"]},
+    "rml": {"priority": ["density", "effort_tolerance", "consistency"]},
+    "power": {"priority": ["velocity_intent", "execution_quality", "fatigue_control"]}
+  }
+}

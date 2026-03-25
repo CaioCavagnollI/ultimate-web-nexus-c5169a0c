@@ -1,0 +1,11 @@
+{
+  "priority": [
+    "authored_portuguese_primary",
+    "authored_translations_secondary",
+    "selected_secondary_sources",
+    "web_tertiary"
+  ],
+  "notes": {
+    "research_mode": "academic_integrations_primary"
+  }
+}

@@ -1,0 +1,10 @@
+<svg width="1200" height="320" viewBox="0 0 1200 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="1200" height="320" rx="32" fill="#0A0A0A"/>
+<path d="M84 240V80H118L206 186V80H242V240H208L120 134V240H84Z" fill="#D4AF37"/>
+<path d="M310 228V92H418V124H346V147H412V178H346V196H420V228H310Z" fill="white"/>
+<path d="M448 228V92H489L534 165L579 92H620V228H584V146L545 206H523L484 146V228H448Z" fill="white"/>
+<path d="M660 228V92H696L766 180V92H802V228H767L696 140V228H660Z" fill="white"/>
+<path d="M839 228V92H875V228H839Z" fill="white"/>
+<path d="M917 228V92H1027V124H953V147H1021V178H953V196H1029V228H917Z" fill="white"/>
+<text x="84" y="286" fill="#B9B9B9" font-size="32" font-family="Arial, Helvetica, sans-serif">Ciência aplicada à força.</text>
+</svg>

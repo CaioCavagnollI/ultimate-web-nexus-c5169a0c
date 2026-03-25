@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "source_priority": [
+    "pt-br-authored-primary",
+    "translations-secondary",
+    "secondary-selected",
+    "web-tertiary"
+  ],
+  "targets": {
+    "rag": {
+      "primary_sources": [
+        "LIVRO_FINAL_PDF.pdf",
+        "LIVRO3ED1pdf.PDF"
+      ],
+      "secondary_sources": [
+        "INFRENCH.pdf",
+        "inspanish3.pdf",
+        "LIVRO1ED3ITALIAN.pdf",
+        "LIVRO3ED1ALEMAOpdf.pdf"
+      ],
+      "topic_buckets": [
+        "fundamentos",
+        "princípios",
+        "métodos",
+        "periodização",
+        "hipertrofia",
+        "força máxima",
+        "RML",
+        "potência",
+        "populações especiais",
+        "lesões",
+        "nutrição e suplementação"
+      ]
+    }
+  }
+}

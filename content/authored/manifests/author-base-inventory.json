@@ -1,0 +1,78 @@
+{
+  "generated_from": "/mnt/data current authored uploads",
+  "items": [
+    {
+      "filename": "CAIO_AUTHORED_PDFS.zip",
+      "size_mb": 86.96,
+      "type": "zip",
+      "zip_entries": 27,
+      "zip_sample": [
+        "CAIO/3ª Ed Livro 1 (1).pdf",
+        "CAIO/3ª Ed Livro 1.pdf",
+        "CAIO/ARTIGO.CIENT.1.CAP.LIVRO.1.PDF",
+        "CAIO/ARTIGO1PDF.pdf",
+        "CAIO/Currículo do Sistema de Currículos Lattes 2026.pdf",
+        "CAIO/ENGLISHBOOK3WORD3.pdf",
+        "CAIO/EspecificaçΣes para Prescriç╞o e Periodizaç╞o do Treinamento.pdf",
+        "CAIO/Hipertrofia Inteligente - Técnicas Avançadas para o Ganho de Massa Muscular.pdf",
+        "CAIO/IN ENGLISH.pdf",
+        "CAIO/INFRENCH.pdf",
+        "CAIO/INFRENCH3.pdf",
+        "CAIO/LIVRO 1 ED. 3.pdf",
+        "CAIO/LIVRO1ED3ITALIAN.pdf",
+        "CAIO/LIVRO1ED3ITALIAN26.pdf",
+        "CAIO/LIVRO3ED1ALEMAOpdf.pdf",
+        "CAIO/LIVRO3ED1EMINGLESpdf.pdf",
+        "CAIO/LIVRO3ED1ESPANHOLpdf.pdf",
+        "CAIO/LIVRO3ED1ITALIANOpdf.pdf",
+        "CAIO/LIVRO3ED1pdf.PDF",
+        "CAIO/LIVRO3EMJAPONESpdf.pdf"
+      ]
+    },
+    {
+      "filename": "INFRENCH.pdf",
+      "size_mb": 2.19,
+      "type": "pdf"
+    },
+    {
+      "filename": "inspanish3.pdf",
+      "size_mb": 2.17,
+      "type": "pdf"
+    },
+    {
+      "filename": "LIVRO_FINAL_PDF.pdf",
+      "size_mb": 6.65,
+      "type": "pdf"
+    },
+    {
+      "filename": "LIVRO1ED3ITALIAN.pdf",
+      "size_mb": 8.63,
+      "type": "pdf"
+    },
+    {
+      "filename": "LIVRO3ED1ALEMAOpdf.pdf",
+      "size_mb": 6.84,
+      "type": "pdf"
+    },
+    {
+      "filename": "LIVRO3ED1pdf.PDF",
+      "size_mb": 7.53,
+      "type": "pdf"
+    }
+  ],
+  "classification": {
+    "RAG_PRIMARY": [
+      "LIVRO_FINAL_PDF.pdf",
+      "LIVRO3ED1pdf.PDF"
+    ],
+    "RAG_SECONDARY_TRANSLATIONS": [
+      "INFRENCH.pdf",
+      "inspanish3.pdf",
+      "LIVRO1ED3ITALIAN.pdf",
+      "LIVRO3ED1ALEMAOpdf.pdf"
+    ],
+    "RAW_ARCHIVE": [
+      "CAIO_AUTHORED_PDFS.zip"
+    ]
+  }
+}

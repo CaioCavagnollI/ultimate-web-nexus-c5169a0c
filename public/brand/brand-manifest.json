@@ -1,0 +1,23 @@
+{
+  "brand": "Nexus",
+  "assets": [
+    {
+      "filename": "seal-institutional.png"
+    },
+    {
+      "filename": "app-icon.png"
+    },
+    {
+      "filename": "logo-premium.png"
+    },
+    {
+      "filename": "nexus-lab-mark.png"
+    },
+    {
+      "filename": "logo-primary.png"
+    },
+    {
+      "filename": "atlas-poster.png"
+    }
+  ]
+}

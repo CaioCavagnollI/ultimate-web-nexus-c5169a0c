@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "source_priority": "authorial_pt_br_first",
+  "destinations": ["prescription_engine"],
+  "rule_groups": [
+    "profile_and_level",
+    "main_goal",
+    "weekly_frequency",
+    "volume",
+    "intensity",
+    "progression",
+    "deload",
+    "exercise_selection",
+    "restrictions_and_injuries",
+    "adherence"
+  ]
+}

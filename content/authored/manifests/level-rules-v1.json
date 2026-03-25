@@ -1,0 +1,8 @@
+{
+  "version": 1,
+  "levels": {
+    "beginner": {"priority": ["simplicity", "technical_repetition", "consistency"]},
+    "intermediate": {"priority": ["individualization", "variation", "volume_intensity_control"]},
+    "advanced": {"priority": ["specificity", "fine_tuning", "fatigue_management"]}
+  }
+}
