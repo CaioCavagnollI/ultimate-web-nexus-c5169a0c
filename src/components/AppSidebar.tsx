@@ -2,7 +2,7 @@ import {
   LayoutDashboard, BookOpen, Brain, ShoppingBag, MessageSquare,
   ClipboardList, FileText, Scan, GraduationCap, Crown, FlaskConical,
   Library, Dumbbell, Users, Upload, Link, Plug, User, CreditCard,
-  Shield, Utensils, Trophy, PenTool
+  Shield, Utensils, Trophy, PenTool, CalendarDays, Activity, Settings
 } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
 import { useLocation } from "react-router-dom";
@@ -13,6 +13,7 @@ import {
 
 const mainItems = [
   { title: "Dashboard", url: "/dashboard", icon: LayoutDashboard },
+  { title: "Hoje", url: "/hoje", icon: CalendarDays },
   { title: "Feed Científico", url: "/feed", icon: BookOpen },
   { title: "AI Mentor", url: "/ai-mentor", icon: Brain },
   { title: "Chat IA", url: "/chat", icon: MessageSquare },
@@ -34,8 +35,13 @@ const toolsItems = [
   { title: "Acadêmico", url: "/academico", icon: GraduationCap },
   { title: "Biblioteca", url: "/biblioteca", icon: Library },
   { title: "Programas de Treino", url: "/programas", icon: Dumbbell },
+  { title: "Performance", url: "/performance", icon: Activity },
   { title: "Loja", url: "/loja", icon: ShoppingBag },
   { title: "Fórum Técnico", url: "/forum", icon: Users },
+];
+
+const professionalItems = [
+  { title: "Clientes", url: "/clientes", icon: Users },
 ];
 
 const systemItems = [
@@ -43,7 +49,8 @@ const systemItems = [
   { title: "Afiliados", url: "/afiliados", icon: Link },
   { title: "Integrações", url: "/integracoes", icon: Plug },
   { title: "Perfil", url: "/perfil", icon: User },
-  { title: "Planos & Preços", url: "/pricing", icon: CreditCard },
+  { title: "Configurações", url: "/configuracoes", icon: Settings },
+  { title: "Billing", url: "/billing", icon: CreditCard },
   { title: "Admin", url: "/admin", icon: Shield },
 ];
 
@@ -51,6 +58,7 @@ const groups = [
   { label: "Principal", items: mainItems },
   { label: "Mentorias Pro", items: proItems },
   { label: "Ferramentas", items: toolsItems },
+  { label: "Profissional", items: professionalItems },
   { label: "Sistema", items: systemItems },
 ];
 
