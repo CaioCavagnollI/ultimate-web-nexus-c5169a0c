@@ -1,7 +1,6 @@
 import { SubPageShell } from "@/components/SubPageShell";
-import { Scan, DomainCard } from "@/components/DomainCard";
 import { Scan as ScanIcon, History, Eye, Upload, Activity, Camera } from "lucide-react";
-import { DomainCard as DC } from "@/components/DomainCard";
+import { DomainCard } from "@/components/DomainCard";
 
 const modules = [
   { icon: Camera, title: "Novo Scan", desc: "Identificar equipamento via câmera ou upload", href: "/scanner/vision" },
