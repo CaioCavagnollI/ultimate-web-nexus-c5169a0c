@@ -21,6 +21,7 @@ export default function LabDoseResponsePage() {
           <div className="p-4 bg-secondary/50 rounded-lg text-center">
             <span className="text-2xl font-display font-bold text-destructive">MRV</span>
             <p className="text-xs text-muted-foreground font-sans mt-1">>20-25 séries/sem</p>
+            <p className="text-xs text-muted-foreground font-sans mt-1">{'>'}20-25 séries/sem</p>
             <p className="text-xs text-muted-foreground/60 font-sans">Máximo recuperável</p>
           </div>
         </div>
