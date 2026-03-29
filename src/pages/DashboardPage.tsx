@@ -12,15 +12,15 @@ import { useAuth } from "@/hooks/useAuth";
 const quickAccess = [
   { icon: Brain, title: "AI Mentor", url: "/ai-mentor", desc: "Assistente científico", badge: "IA" },
   { icon: Scan, title: "Atlas Scanner", url: "/scanner", desc: "Scanner de equipamentos", badge: "Atlas" },
-  { icon: ClipboardList, title: "Anamnese", url: "/anamnese", desc: "Avaliação inteligente" },
-  { icon: FileText, title: "Prescrição", url: "/prescricao", desc: "Prescrição baseada em evidência" },
+  { icon: ClipboardList, title: "Anamnese", url: "/anamnesis", desc: "Avaliação inteligente" },
+  { icon: FileText, title: "Prescrição", url: "/prescriptions", desc: "Prescrição baseada em evidência" },
   { icon: FlaskConical, title: "Nexus Lab", url: "/lab", desc: "Calculadoras científicas", badge: "Lab" },
-  { icon: GraduationCap, title: "Acadêmico", url: "/academico", desc: "Pesquisa e artigos" },
-  { icon: ShoppingBag, title: "Loja", url: "/loja", desc: "Produtos digitais" },
+  { icon: GraduationCap, title: "Acadêmico", url: "/academic", desc: "Pesquisa e artigos" },
+  { icon: ShoppingBag, title: "Loja", url: "/store", desc: "Produtos digitais" },
   { icon: BookOpen, title: "Feed Científico", url: "/feed", desc: "Conteúdo técnico" },
   { icon: MessageSquare, title: "Chat IA", url: "/chat", desc: "Chat com IA científica" },
   { icon: Users, title: "Fórum", url: "/forum", desc: "Discussão técnica" },
-  { icon: Dumbbell, title: "Programas", url: "/programas", desc: "Programas de treino" },
+  { icon: Dumbbell, title: "Programas", url: "/programs", desc: "Programas de treino" },
 ];
 
 const stats = [
