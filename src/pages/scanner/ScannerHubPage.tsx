@@ -24,7 +24,7 @@ export default function ScannerHubPage() {
       </div>
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {modules.map((m) => (
-          <DC key={m.title} icon={m.icon} title={m.title} description={m.desc} href={m.href} />
+          <DomainCard key={m.title} icon={m.icon} title={m.title} description={m.desc} href={m.href} />
         ))}
       </div>
       <div className="grid md:grid-cols-3 gap-4">
