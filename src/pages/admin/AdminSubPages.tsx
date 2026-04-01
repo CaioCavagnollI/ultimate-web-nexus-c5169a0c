@@ -202,3 +202,6 @@ export function AdminSettingsPage() {
 export function AdminExecutivePage() {
   return (<SubPageShell icon={BarChart3} title="Visão Executiva" breadcrumbs={bc("Executivo")}><div className="grid grid-cols-2 lg:grid-cols-4 gap-4"><MetricCard label="Usuários" value="1" change="+1" trend="up" /><MetricCard label="Receita" value="R$ 0" /><MetricCard label="Retenção" value="—" /><MetricCard label="NPS" value="—" /></div></SubPageShell>);
 }
+export function AdminIntegrationsPage() {
+  return (<SubPageShell icon={Settings} title="Integrações" breadcrumbs={bc("Integrações")}><DataTable columns={[{key:"name",label:"Integração"},{key:"status",label:"Status",render:(row:Record<string,any>)=><StatusBadge variant={row.status==="Ativo"?"active":"inactive"}>{row.status}</StatusBadge>},{key:"type",label:"Tipo"}]} data={[{name:"Garmin Connect",status:"Inativo",type:"Wearable"},{name:"Google Fit",status:"Inativo",type:"Saúde"},{name:"Strava",status:"Inativo",type:"Atividade"}]} /></SubPageShell>);
+}
