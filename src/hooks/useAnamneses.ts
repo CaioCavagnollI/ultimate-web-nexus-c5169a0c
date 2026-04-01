@@ -36,7 +36,7 @@ export function useAnamnesis(id: string | undefined) {
     queryFn: async () => {
       const { data, error } = await supabase.from("anamneses" as any).select("*, clients(name)").eq("id", id!).single();
       if (error) throw error;
-      return { ...data, client_name: (data as any).clients?.name } as unknown as Anamnesis;
+      return { ...(data as any), client_name: (data as any).clients?.name } as unknown as Anamnesis;
     },
     enabled: !!id,
   });
