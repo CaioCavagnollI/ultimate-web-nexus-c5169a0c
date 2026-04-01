@@ -14,6 +14,147 @@ export type Database = {
   }
   public: {
     Tables: {
+      ai_memory: {
+        Row: {
+          category: string
+          confidence: number | null
+          created_at: string
+          id: string
+          key: string
+          source: string | null
+          updated_at: string
+          user_id: string
+          value: Json
+        }
+        Insert: {
+          category: string
+          confidence?: number | null
+          created_at?: string
+          id?: string
+          key: string
+          source?: string | null
+          updated_at?: string
+          user_id: string
+          value: Json
+        }
+        Update: {
+          category?: string
+          confidence?: number | null
+          created_at?: string
+          id?: string
+          key?: string
+          source?: string | null
+          updated_at?: string
+          user_id?: string
+          value?: Json
+        }
+        Relationships: []
+      }
+      ai_prescription_suggestions: {
+        Row: {
+          accepted: boolean | null
+          anamnesis_id: string | null
+          client_id: string | null
+          created_at: string
+          id: string
+          input_snapshot: Json
+          prescription_id: string | null
+          rationale: string | null
+          suggestion: Json
+          user_id: string
+        }
+        Insert: {
+          accepted?: boolean | null
+          anamnesis_id?: string | null
+          client_id?: string | null
+          created_at?: string
+          id?: string
+          input_snapshot?: Json
+          prescription_id?: string | null
+          rationale?: string | null
+          suggestion?: Json
+          user_id: string
+        }
+        Update: {
+          accepted?: boolean | null
+          anamnesis_id?: string | null
+          client_id?: string | null
+          created_at?: string
+          id?: string
+          input_snapshot?: Json
+          prescription_id?: string | null
+          rationale?: string | null
+          suggestion?: Json
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ai_prescription_suggestions_anamnesis_id_fkey"
+            columns: ["anamnesis_id"]
+            isOneToOne: false
+            referencedRelation: "anamneses"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "ai_prescription_suggestions_client_id_fkey"
+            columns: ["client_id"]
+            isOneToOne: false
+            referencedRelation: "clients"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "ai_prescription_suggestions_prescription_id_fkey"
+            columns: ["prescription_id"]
+            isOneToOne: false
+            referencedRelation: "prescriptions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      ai_usage_logs: {
+        Row: {
+          conversation_id: string | null
+          created_at: string
+          id: string
+          metadata: Json | null
+          mode: string
+          request_count: number | null
+          tokens_input: number | null
+          tokens_output: number | null
+          user_id: string
+        }
+        Insert: {
+          conversation_id?: string | null
+          created_at?: string
+          id?: string
+          metadata?: Json | null
+          mode: string
+          request_count?: number | null
+          tokens_input?: number | null
+          tokens_output?: number | null
+          user_id: string
+        }
+        Update: {
+          conversation_id?: string | null
+          created_at?: string
+          id?: string
+          metadata?: Json | null
+          mode?: string
+          request_count?: number | null
+          tokens_input?: number | null
+          tokens_output?: number | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ai_usage_logs_conversation_id_fkey"
+            columns: ["conversation_id"]
+            isOneToOne: false
+            referencedRelation: "conversations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       anamneses: {
         Row: {
           client_id: string | null
@@ -51,6 +192,95 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      article_analyses: {
+        Row: {
+          abstract: string | null
+          created_at: string
+          doi: string | null
+          evidence_level: string | null
+          id: string
+          limitations: string | null
+          metadata: Json | null
+          practical_application: string | null
+          research_source_id: string | null
+          risk_of_bias: string | null
+          summary_practical: string | null
+          summary_technical: string | null
+          title: string | null
+          user_id: string
+        }
+        Insert: {
+          abstract?: string | null
+          created_at?: string
+          doi?: string | null
+          evidence_level?: string | null
+          id?: string
+          limitations?: string | null
+          metadata?: Json | null
+          practical_application?: string | null
+          research_source_id?: string | null
+          risk_of_bias?: string | null
+          summary_practical?: string | null
+          summary_technical?: string | null
+          title?: string | null
+          user_id: string
+        }
+        Update: {
+          abstract?: string | null
+          created_at?: string
+          doi?: string | null
+          evidence_level?: string | null
+          id?: string
+          limitations?: string | null
+          metadata?: Json | null
+          practical_application?: string | null
+          research_source_id?: string | null
+          risk_of_bias?: string | null
+          summary_practical?: string | null
+          summary_technical?: string | null
+          title?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "article_analyses_research_source_id_fkey"
+            columns: ["research_source_id"]
+            isOneToOne: false
+            referencedRelation: "research_sources"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      billing_events: {
+        Row: {
+          created_at: string
+          event_type: string
+          id: string
+          payload: Json
+          processed: boolean | null
+          stripe_event_id: string | null
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          event_type: string
+          id?: string
+          payload: Json
+          processed?: boolean | null
+          stripe_event_id?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          event_type?: string
+          id?: string
+          payload?: Json
+          processed?: boolean | null
+          stripe_event_id?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
       }
       clients: {
         Row: {
@@ -95,7 +325,9 @@ export type Database = {
         Row: {
           created_at: string
           id: string
+          metadata: Json | null
           mode: string
+          related_client_id: string | null
           title: string
           updated_at: string
           user_id: string
@@ -103,7 +335,9 @@ export type Database = {
         Insert: {
           created_at?: string
           id?: string
+          metadata?: Json | null
           mode?: string
+          related_client_id?: string | null
           title?: string
           updated_at?: string
           user_id: string
@@ -111,12 +345,115 @@ export type Database = {
         Update: {
           created_at?: string
           id?: string
+          metadata?: Json | null
           mode?: string
+          related_client_id?: string | null
           title?: string
           updated_at?: string
           user_id?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "conversations_related_client_id_fkey"
+            columns: ["related_client_id"]
+            isOneToOne: false
+            referencedRelation: "clients"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      creator_commissions: {
+        Row: {
+          commission_amount: number
+          commission_rate: number
+          created_at: string
+          creator_user_id: string
+          gross_amount: number
+          id: string
+          product_id: string | null
+          purchase_id: string | null
+          status: string | null
+        }
+        Insert: {
+          commission_amount: number
+          commission_rate?: number
+          created_at?: string
+          creator_user_id: string
+          gross_amount: number
+          id?: string
+          product_id?: string | null
+          purchase_id?: string | null
+          status?: string | null
+        }
+        Update: {
+          commission_amount?: number
+          commission_rate?: number
+          created_at?: string
+          creator_user_id?: string
+          gross_amount?: number
+          id?: string
+          product_id?: string | null
+          purchase_id?: string | null
+          status?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "creator_commissions_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "store_products"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "creator_commissions_purchase_id_fkey"
+            columns: ["purchase_id"]
+            isOneToOne: false
+            referencedRelation: "store_purchases"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      library_items: {
+        Row: {
+          bundle_id: string | null
+          created_at: string
+          id: string
+          product_id: string | null
+          source: string
+          user_id: string
+        }
+        Insert: {
+          bundle_id?: string | null
+          created_at?: string
+          id?: string
+          product_id?: string | null
+          source?: string
+          user_id: string
+        }
+        Update: {
+          bundle_id?: string | null
+          created_at?: string
+          id?: string
+          product_id?: string | null
+          source?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "library_items_bundle_id_fkey"
+            columns: ["bundle_id"]
+            isOneToOne: false
+            referencedRelation: "store_bundles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "library_items_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "store_products"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       messages: {
         Row: {
@@ -124,6 +461,7 @@ export type Database = {
           conversation_id: string
           created_at: string
           id: string
+          metadata: Json | null
           role: string
         }
         Insert: {
@@ -131,6 +469,7 @@ export type Database = {
           conversation_id: string
           created_at?: string
           id?: string
+          metadata?: Json | null
           role?: string
         }
         Update: {
@@ -138,6 +477,7 @@ export type Database = {
           conversation_id?: string
           created_at?: string
           id?: string
+          metadata?: Json | null
           role?: string
         }
         Relationships: [
@@ -150,30 +490,86 @@ export type Database = {
           },
         ]
       }
+      payments: {
+        Row: {
+          amount: number
+          created_at: string
+          currency: string | null
+          id: string
+          metadata: Json | null
+          status: string | null
+          stripe_invoice_id: string | null
+          stripe_payment_intent_id: string | null
+          subscription_id: string | null
+          user_id: string
+        }
+        Insert: {
+          amount: number
+          created_at?: string
+          currency?: string | null
+          id?: string
+          metadata?: Json | null
+          status?: string | null
+          stripe_invoice_id?: string | null
+          stripe_payment_intent_id?: string | null
+          subscription_id?: string | null
+          user_id: string
+        }
+        Update: {
+          amount?: number
+          created_at?: string
+          currency?: string | null
+          id?: string
+          metadata?: Json | null
+          status?: string | null
+          stripe_invoice_id?: string | null
+          stripe_payment_intent_id?: string | null
+          subscription_id?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "payments_subscription_id_fkey"
+            columns: ["subscription_id"]
+            isOneToOne: false
+            referencedRelation: "subscriptions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       plans: {
         Row: {
+          active: boolean | null
+          code: string | null
           created_at: string
           features: Json | null
           id: string
           interval: string
           name: string
           price: number
+          stripe_price_id: string | null
         }
         Insert: {
+          active?: boolean | null
+          code?: string | null
           created_at?: string
           features?: Json | null
           id?: string
           interval?: string
           name: string
           price?: number
+          stripe_price_id?: string | null
         }
         Update: {
+          active?: boolean | null
+          code?: string | null
           created_at?: string
           features?: Json | null
           id?: string
           interval?: string
           name?: string
           price?: number
+          stripe_price_id?: string | null
         }
         Relationships: []
       }
@@ -323,6 +719,254 @@ export type Database = {
         }
         Relationships: []
       }
+      research_chunks: {
+        Row: {
+          chunk_index: number
+          content: string
+          created_at: string
+          document_id: string
+          embedding: Json | null
+          id: string
+          metadata: Json | null
+          user_id: string | null
+        }
+        Insert: {
+          chunk_index: number
+          content: string
+          created_at?: string
+          document_id: string
+          embedding?: Json | null
+          id?: string
+          metadata?: Json | null
+          user_id?: string | null
+        }
+        Update: {
+          chunk_index?: number
+          content?: string
+          created_at?: string
+          document_id?: string
+          embedding?: Json | null
+          id?: string
+          metadata?: Json | null
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "research_chunks_document_id_fkey"
+            columns: ["document_id"]
+            isOneToOne: false
+            referencedRelation: "research_documents"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      research_citations: {
+        Row: {
+          chunk_id: string | null
+          citation_text: string | null
+          created_at: string
+          document_id: string | null
+          doi: string | null
+          id: string
+          metadata: Json | null
+          research_query_id: string
+          source_id: string | null
+          source_title: string | null
+          source_url: string | null
+        }
+        Insert: {
+          chunk_id?: string | null
+          citation_text?: string | null
+          created_at?: string
+          document_id?: string | null
+          doi?: string | null
+          id?: string
+          metadata?: Json | null
+          research_query_id: string
+          source_id?: string | null
+          source_title?: string | null
+          source_url?: string | null
+        }
+        Update: {
+          chunk_id?: string | null
+          citation_text?: string | null
+          created_at?: string
+          document_id?: string | null
+          doi?: string | null
+          id?: string
+          metadata?: Json | null
+          research_query_id?: string
+          source_id?: string | null
+          source_title?: string | null
+          source_url?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "research_citations_chunk_id_fkey"
+            columns: ["chunk_id"]
+            isOneToOne: false
+            referencedRelation: "research_chunks"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "research_citations_document_id_fkey"
+            columns: ["document_id"]
+            isOneToOne: false
+            referencedRelation: "research_documents"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "research_citations_research_query_id_fkey"
+            columns: ["research_query_id"]
+            isOneToOne: false
+            referencedRelation: "research_queries"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "research_citations_source_id_fkey"
+            columns: ["source_id"]
+            isOneToOne: false
+            referencedRelation: "research_sources"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      research_documents: {
+        Row: {
+          created_at: string
+          document_type: string | null
+          full_text: string | null
+          id: string
+          metadata: Json | null
+          source_id: string
+          summary: string | null
+          title: string
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          document_type?: string | null
+          full_text?: string | null
+          id?: string
+          metadata?: Json | null
+          source_id: string
+          summary?: string | null
+          title: string
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          document_type?: string | null
+          full_text?: string | null
+          id?: string
+          metadata?: Json | null
+          source_id?: string
+          summary?: string | null
+          title?: string
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "research_documents_source_id_fkey"
+            columns: ["source_id"]
+            isOneToOne: false
+            referencedRelation: "research_sources"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      research_queries: {
+        Row: {
+          answer: string | null
+          conversation_id: string | null
+          created_at: string
+          id: string
+          metadata: Json | null
+          mode: string | null
+          query: string
+          user_id: string
+        }
+        Insert: {
+          answer?: string | null
+          conversation_id?: string | null
+          created_at?: string
+          id?: string
+          metadata?: Json | null
+          mode?: string | null
+          query: string
+          user_id: string
+        }
+        Update: {
+          answer?: string | null
+          conversation_id?: string | null
+          created_at?: string
+          id?: string
+          metadata?: Json | null
+          mode?: string | null
+          query?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "research_queries_conversation_id_fkey"
+            columns: ["conversation_id"]
+            isOneToOne: false
+            referencedRelation: "conversations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      research_sources: {
+        Row: {
+          abstract: string | null
+          authors: string | null
+          created_at: string
+          doi: string | null
+          file_url: string | null
+          id: string
+          journal: string | null
+          metadata: Json | null
+          publication_year: number | null
+          raw_text: string | null
+          source_type: string
+          source_url: string | null
+          title: string | null
+          user_id: string | null
+        }
+        Insert: {
+          abstract?: string | null
+          authors?: string | null
+          created_at?: string
+          doi?: string | null
+          file_url?: string | null
+          id?: string
+          journal?: string | null
+          metadata?: Json | null
+          publication_year?: number | null
+          raw_text?: string | null
+          source_type: string
+          source_url?: string | null
+          title?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          abstract?: string | null
+          authors?: string | null
+          created_at?: string
+          doi?: string | null
+          file_url?: string | null
+          id?: string
+          journal?: string | null
+          metadata?: Json | null
+          publication_year?: number | null
+          raw_text?: string | null
+          source_type?: string
+          source_url?: string | null
+          title?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
       scanner_results: {
         Row: {
           classification: string | null
@@ -332,7 +976,10 @@ export type Database = {
           exercises: string[] | null
           id: string
           image_url: string | null
+          metadata: Json | null
           muscles: string[] | null
+          related_client_id: string | null
+          source: string | null
           user_id: string
         }
         Insert: {
@@ -343,7 +990,10 @@ export type Database = {
           exercises?: string[] | null
           id?: string
           image_url?: string | null
+          metadata?: Json | null
           muscles?: string[] | null
+          related_client_id?: string | null
+          source?: string | null
           user_id: string
         }
         Update: {
@@ -354,10 +1004,21 @@ export type Database = {
           exercises?: string[] | null
           id?: string
           image_url?: string | null
+          metadata?: Json | null
           muscles?: string[] | null
+          related_client_id?: string | null
+          source?: string | null
           user_id?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "scanner_results_related_client_id_fkey"
+            columns: ["related_client_id"]
+            isOneToOne: false
+            referencedRelation: "clients"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       session_sets: {
         Row: {
@@ -403,6 +1064,66 @@ export type Database = {
           },
         ]
       }
+      store_bundle_items: {
+        Row: {
+          bundle_id: string
+          id: string
+          product_id: string
+        }
+        Insert: {
+          bundle_id: string
+          id?: string
+          product_id: string
+        }
+        Update: {
+          bundle_id?: string
+          id?: string
+          product_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "store_bundle_items_bundle_id_fkey"
+            columns: ["bundle_id"]
+            isOneToOne: false
+            referencedRelation: "store_bundles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "store_bundle_items_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "store_products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      store_bundles: {
+        Row: {
+          created_at: string
+          description: string | null
+          id: string
+          price: number
+          status: string | null
+          title: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          price?: number
+          status?: string | null
+          title: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          price?: number
+          status?: string | null
+          title?: string
+        }
+        Relationships: []
+      }
       store_products: {
         Row: {
           approved_at: string | null
@@ -412,6 +1133,7 @@ export type Database = {
           description: string | null
           file_url: string | null
           id: string
+          metadata: Json | null
           price: number
           status: string
           title: string
@@ -427,6 +1149,7 @@ export type Database = {
           description?: string | null
           file_url?: string | null
           id?: string
+          metadata?: Json | null
           price?: number
           status?: string
           title: string
@@ -442,6 +1165,7 @@ export type Database = {
           description?: string | null
           file_url?: string | null
           id?: string
+          metadata?: Json | null
           price?: number
           status?: string
           title?: string
@@ -455,6 +1179,8 @@ export type Database = {
         Row: {
           created_at: string
           id: string
+          metadata: Json | null
+          payment_id: string | null
           price_paid: number
           product_id: string
           user_id: string
@@ -462,6 +1188,8 @@ export type Database = {
         Insert: {
           created_at?: string
           id?: string
+          metadata?: Json | null
+          payment_id?: string | null
           price_paid: number
           product_id: string
           user_id: string
@@ -469,6 +1197,8 @@ export type Database = {
         Update: {
           created_at?: string
           id?: string
+          metadata?: Json | null
+          payment_id?: string | null
           price_paid?: number
           product_id?: string
           user_id?: string
@@ -485,27 +1215,48 @@ export type Database = {
       }
       subscriptions: {
         Row: {
+          amount: number | null
+          cancel_at_period_end: boolean | null
           created_at: string
+          current_period_end: string | null
+          current_period_start: string | null
           expires_at: string | null
           id: string
+          interval: string | null
           plan_id: string | null
           status: string
+          stripe_customer_id: string | null
+          stripe_subscription_id: string | null
           user_id: string
         }
         Insert: {
+          amount?: number | null
+          cancel_at_period_end?: boolean | null
           created_at?: string
+          current_period_end?: string | null
+          current_period_start?: string | null
           expires_at?: string | null
           id?: string
+          interval?: string | null
           plan_id?: string | null
           status?: string
+          stripe_customer_id?: string | null
+          stripe_subscription_id?: string | null
           user_id: string
         }
         Update: {
+          amount?: number | null
+          cancel_at_period_end?: boolean | null
           created_at?: string
+          current_period_end?: string | null
+          current_period_start?: string | null
           expires_at?: string | null
           id?: string
+          interval?: string | null
           plan_id?: string | null
           status?: string
+          stripe_customer_id?: string | null
+          stripe_subscription_id?: string | null
           user_id?: string
         }
         Relationships: [
