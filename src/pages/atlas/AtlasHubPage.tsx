@@ -1,4 +1,4 @@
-import { Brain, MessageSquare, Sparkles, BookOpen, FileText, GraduationCap, Mic, Lightbulb } from "lucide-react";
+import { Brain, MessageSquare, Sparkles, BookOpen, FileText, GraduationCap, Lightbulb } from "lucide-react";
 import { DomainCard } from "@/components/DomainCard";
 import { SubPageShell } from "@/components/SubPageShell";
 
@@ -9,30 +9,29 @@ const modes = [
   { icon: Brain, title: "Atlas Mentor", desc: "Mentoria científica personalizada", href: "/atlas/mentor", badge: "Pro" },
   { icon: GraduationCap, title: "Atlas Research", desc: "Pesquisa e análise de artigos", href: "/atlas/research" },
   { icon: FileText, title: "Atlas Prescription", desc: "Prescrição assistida por IA", href: "/atlas/prescription" },
-  { icon: Mic, title: "Atlas Speak", desc: "Interface por voz (em breve)", href: "/atlas/speak", badge: "Soon" },
 ];
 
 export default function AtlasHubPage() {
   return (
-    <SubPageShell icon={Brain} title="Atlas — IA Científica" description="Motor de inteligência artificial do Nexus para treinamento baseado em evidência">
+    <SubPageShell icon={Brain} title="Atlas Brain — Central de IA" description="Motor de inteligência artificial do Nexus para treinamento baseado em evidência">
       <div className="glass-card p-8 bg-gradient-to-br from-primary/5 to-transparent">
         <div className="flex items-center gap-4 mb-4">
           <div className="w-16 h-16 rounded-2xl gold-gradient flex items-center justify-center">
             <Brain className="h-8 w-8 text-primary-foreground" />
           </div>
           <div>
-            <h2 className="text-2xl font-display font-bold">Atlas</h2>
+            <h2 className="text-2xl font-display font-bold">Atlas Brain</h2>
             <p className="text-sm text-muted-foreground font-sans">Powered by science. Built for strength.</p>
           </div>
         </div>
         <p className="text-sm text-muted-foreground font-sans max-w-2xl">
-          O Atlas é o motor de IA do Nexus. Ele processa evidências científicas, analisa dados de treinamento, gera prescrições personalizadas e responde perguntas com referências peer-reviewed.
+          O Atlas Brain centraliza todas as IAs do Nexus: chat, mentor, assistente guiado, pesquisa científica, explicações e prescrição assistida. Tudo baseado em evidência peer-reviewed.
         </p>
       </div>
 
       <div>
         <h2 className="font-display font-semibold text-lg mb-4">Modos de Uso</h2>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {modes.map((m) => (
             <DomainCard key={m.title} icon={m.icon} title={m.title} description={m.desc} href={m.href} badge={m.badge} />
           ))}

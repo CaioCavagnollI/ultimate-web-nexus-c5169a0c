@@ -9,18 +9,18 @@ const plans = [
     cta: "Começar Grátis"
   },
   {
-    name: "Pro", icon: Crown, price: "R$ 49,90", period: "/mês", highlight: true,
-    features: ["Tudo do Free", "AI Mentor ilimitado", "Scanner Atlas ilimitado", "Prescrição IA completa", "Anamnese avançada", "Nexus Lab completo", "Logbook e Performance", "Suporte prioritário"],
+    name: "Pro", icon: Crown, price: "R$ 19,90", period: "/mês", annual: "R$ 199,90/ano",
+    features: ["Tudo do Free", "AI Mentor ilimitado", "Scanner Atlas ilimitado", "Prescrição IA completa", "Anamnese avançada", "Nexus Lab completo", "Atlas Store: publicar produtos", "Logbook e Performance"],
     cta: "Assinar Pro"
   },
   {
-    name: "Premium", icon: Crown, price: "R$ 99,90", period: "/mês",
-    features: ["Tudo do Pro", "Mentorias Pro (4 áreas)", "Editorial Pro", "Coach Pro 1:1", "API access", "Exportação avançada", "Selo verificado", "Acesso antecipado"],
+    name: "Premium", icon: Crown, price: "R$ 59,90", period: "/mês", annual: "R$ 599,90/ano", highlight: true,
+    features: ["Tudo do Pro", "Mentorias Pro", "Editorial Pro", "Programas ilimitados", "Acadêmico completo", "Performance analytics", "Suporte prioritário", "Acesso antecipado"],
     cta: "Assinar Premium"
   },
   {
     name: "Enterprise", icon: Building2, price: "Sob consulta", period: "",
-    features: ["Tudo do Premium", "Multi-tenant", "Analytics avançados", "SSO & SCIM", "SLA dedicado", "Onboarding personalizado", "Integrações customizadas", "Faturamento centralizado"],
+    features: ["Tudo do Premium", "Multi-tenant", "Analytics avançados", "SSO & SCIM", "SLA dedicado", "Onboarding personalizado", "Integrações customizadas", "API access"],
     cta: "Falar com Vendas"
   },
 ];
@@ -43,8 +43,8 @@ export default function PlansPage() {
       <section className="py-10 px-6 pb-24">
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 xl:grid-cols-4 gap-6">
           {plans.map((plan) => (
-            <div key={plan.name} className={`glass-card p-8 flex flex-col ${plan.highlight ? "border-primary/40 ring-1 ring-primary/20 relative" : ""}`}>
-              {plan.highlight && (
+            <div key={plan.name} className={`glass-card p-8 flex flex-col ${(plan as any).highlight ? "border-primary/40 ring-1 ring-primary/20 relative" : ""}`}>
+              {(plan as any).highlight && (
                 <span className="absolute -top-3 left-1/2 -translate-x-1/2 text-xs font-sans font-semibold bg-primary text-primary-foreground px-3 py-1 rounded-full">Mais popular</span>
               )}
               <plan.icon className="h-8 w-8 text-primary mb-4" />
@@ -53,6 +53,7 @@ export default function PlansPage() {
                 <span className="text-3xl font-display font-bold gold-text">{plan.price}</span>
                 {plan.period && <span className="text-sm text-muted-foreground font-sans">{plan.period}</span>}
               </div>
+              {(plan as any).annual && <p className="text-xs text-muted-foreground/70 font-sans mb-2">ou {(plan as any).annual}</p>}
               <ul className="mt-6 space-y-3 flex-1">
                 {plan.features.map((f) => (
                   <li key={f} className="flex items-start gap-2 text-sm font-sans text-muted-foreground">
@@ -60,11 +61,16 @@ export default function PlansPage() {
                   </li>
                 ))}
               </ul>
-              <Button variant={plan.highlight ? "hero" : "hero-outline"} className="w-full mt-8" onClick={() => navigate("/auth")}>
+              <Button variant={(plan as any).highlight ? "hero" : "hero-outline"} className="w-full mt-8" onClick={() => navigate("/auth")}>
                 {plan.cta} <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </div>
           ))}
+        </div>
+        <div className="max-w-7xl mx-auto mt-8">
+          <div className="glass-card p-5 text-center">
+            <p className="text-sm text-muted-foreground font-sans"><strong className="text-foreground">Admin:</strong> Administradores possuem acesso Premium vitalício gratuito.</p>
+          </div>
         </div>
       </section>
     </div>
