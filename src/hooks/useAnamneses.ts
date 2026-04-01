@@ -56,8 +56,8 @@ export function useCreateAnamnesis() {
 export function useUpdateAnamnesis() {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: async ({ id, ...input }: { id: string; data?: Record<string, unknown>; status?: string; client_id?: string }) => {
-      const update: Record<string, unknown> = {};
+    mutationFn: async ({ id, ...input }: { id: string; data?: Record<string, Json | undefined>; status?: string; client_id?: string }) => {
+      const update: Record<string, Json | string | null | undefined> = {};
       if (input.data !== undefined) update.data = input.data;
       if (input.status !== undefined) update.status = input.status;
       if (input.client_id !== undefined) update.client_id = input.client_id;
