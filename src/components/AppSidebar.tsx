@@ -3,10 +3,9 @@ import {
   ClipboardList, FileText, Scan, Crown, FlaskConical,
   Library, Dumbbell, Users, Upload, User, CreditCard,
   Shield, CalendarDays, Activity, Settings,
-  Building2, Sparkles, Search, PenTool
+  Building2, Sparkles, Search, PenTool, ShoppingBag
 } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
-import { useLocation } from "react-router-dom";
 import {
   Sidebar, SidebarContent, SidebarGroup, SidebarGroupContent,
   SidebarGroupLabel, SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar,
@@ -16,37 +15,32 @@ import nexusLogo from "@/assets/nexus-logo.jpg";
 const mainItems = [
   { title: "Dashboard", url: "/dashboard", icon: LayoutDashboard },
   { title: "Hoje", url: "/today", icon: CalendarDays },
-  { title: "Feed Científico", url: "/feed", icon: BookOpen },
 ];
 
 const atlasItems = [
   { title: "Atlas Brain", url: "/atlas", icon: Brain },
-  { title: "Chat IA", url: "/atlas/chat", icon: MessageSquare },
-  { title: "Mentor IA", url: "/atlas/mentor", icon: Sparkles },
   { title: "Atlas Scanner", url: "/scanner", icon: Scan },
+  { title: "Atlas Store", url: "/store", icon: ShoppingBag },
 ];
 
 const clinicalItems = [
   { title: "Anamnese", url: "/anamnesis", icon: ClipboardList },
-  { title: "Prescrição de Treino", url: "/prescriptions", icon: FileText },
+  { title: "Prescrição", url: "/prescriptions", icon: FileText },
   { title: "Treinos", url: "/training", icon: Dumbbell },
+  { title: "Clientes", url: "/clients", icon: Users },
 ];
 
 const toolsItems = [
-  { title: "Atlas Lab", url: "/lab", icon: FlaskConical },
-  { title: "Atlas Sci-Search", url: "/academic", icon: Search },
   { title: "Biblioteca", url: "/library", icon: Library },
+  { title: "Atlas Lab", url: "/lab", icon: FlaskConical },
+  { title: "Sci-Search", url: "/academic", icon: Search },
   { title: "Performance", url: "/performance", icon: Activity },
 ];
 
 const primeItems = [
   { title: "Mentoria Prime", url: "/premium", icon: Crown },
-  { title: "Treinamento Personalizado", url: "/treinamento-pro", icon: Dumbbell },
-  { title: "Orientação Acadêmica", url: "/editorial-pro", icon: PenTool },
-];
-
-const professionalItems = [
-  { title: "Clientes", url: "/clients", icon: Users },
+  { title: "Treinamento Pro", url: "/treinamento-pro", icon: Dumbbell },
+  { title: "Editorial Pro", url: "/editorial-pro", icon: PenTool },
 ];
 
 const systemItems = [
@@ -63,11 +57,10 @@ const adminItems = [
 
 const groups = [
   { label: "Principal", items: mainItems },
-  { label: "Atlas IA", items: atlasItems },
+  { label: "Atlas", items: atlasItems },
   { label: "Clínico", items: clinicalItems },
   { label: "Ferramentas", items: toolsItems },
   { label: "Mentoria Prime", items: primeItems },
-  { label: "Profissional", items: professionalItems },
   { label: "Sistema", items: systemItems },
   { label: "Gestão", items: adminItems },
 ];

@@ -119,6 +119,7 @@ const LazyLabMacros = lazy(() => import("./pages/lab/LabCalculators").then(m => 
 const LazyPerfInsights = lazy(() => import("./pages/performance/PerformanceSubPages").then(m => ({ default: m.PerformanceInsightsPage })));
 const LazyPerfLogbook = lazy(() => import("./pages/performance/PerformanceSubPages").then(m => ({ default: m.PerformanceLogbookPage })));
 
+
 const LazyLibFavorites = lazy(() => import("./pages/library/LibraryAcademicSubPages").then(m => ({ default: m.LibraryFavoritesPage })));
 const LazyLibDetail = lazy(() => import("./pages/library/LibraryAcademicSubPages").then(m => ({ default: m.LibraryDetailPage })));
 const LazyAcademicSearch = lazy(() => import("./pages/library/LibraryAcademicSubPages").then(m => ({ default: m.AcademicSearchPage })));

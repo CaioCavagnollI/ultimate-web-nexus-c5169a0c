@@ -28,9 +28,9 @@ const stats = [
 ];
 
 const plans = [
-  { name: "Free", price: "R$ 0", period: "/mês", features: ["Atlas Chat básico", "Feed Científico", "Atlas Lab", "3 prescrições/mês"], highlight: false },
-  { name: "Pro", price: "R$ 49", period: "/mês", features: ["Atlas IA completo", "Scanner ilimitado", "Prescrições ilimitadas", "Anamnese Smart", "Performance analytics", "Suporte prioritário"], highlight: true },
-  { name: "Business", price: "R$ 149", period: "/mês", features: ["Tudo do Pro", "Multi-workspace", "API access", "White-label", "Analytics avançado", "Onboarding dedicado"], highlight: false },
+  { name: "Free", price: "R$ 0", period: "/mês", features: ["Atlas Chat básico", "Feed Científico", "Atlas Lab", "Scanner (3/dia)"], highlight: false },
+  { name: "Pro", price: "R$ 19,90", period: "/mês", features: ["Atlas IA completo", "Scanner ilimitado", "Prescrições ilimitadas", "Anamnese Smart", "Atlas Store", "Nexus Lab completo"], highlight: false },
+  { name: "Premium", price: "R$ 59,90", period: "/mês", features: ["Tudo do Pro", "Mentorias Pro", "Performance analytics", "Programas ilimitados", "Suporte prioritário", "Acesso antecipado"], highlight: true },
 ];
 
 const differentials = [
