@@ -72,7 +72,7 @@ export function useSessionSets(sessionId: string | undefined) {
     queryFn: async () => {
       const { data, error } = await supabase.from("session_sets" as any).select("*").eq("session_id", sessionId!).order("exercise_name").order("set_number");
       if (error) throw error;
-      return data as SessionSet[];
+      return data as unknown as SessionSet[];
     },
     enabled: !!sessionId,
   });

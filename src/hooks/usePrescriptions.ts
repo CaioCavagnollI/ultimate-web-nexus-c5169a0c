@@ -50,7 +50,7 @@ export function usePrescriptions() {
         ...p,
         client_name: p.clients?.name,
         exercise_count: p.prescription_exercises?.length || 0,
-      })) as Prescription[];
+      })) as unknown as Prescription[];
     },
     enabled: !!user,
   });
@@ -67,7 +67,7 @@ export function usePrescription(id: string | undefined) {
         .single();
       if (error) throw error;
       const d = data as any;
-      return { ...d, client_name: d.clients?.name, exercises: d.prescription_exercises || [] } as Prescription;
+      return { ...d, client_name: d.clients?.name, exercises: d.prescription_exercises || [] } as unknown as Prescription;
     },
     enabled: !!id,
   });

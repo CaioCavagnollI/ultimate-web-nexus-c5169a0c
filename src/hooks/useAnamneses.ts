@@ -24,7 +24,7 @@ export function useAnamneses() {
         .select("*, clients(name)")
         .order("updated_at", { ascending: false });
       if (error) throw error;
-      return (data as any[]).map((a) => ({ ...a, client_name: a.clients?.name })) as Anamnesis[];
+      return (data as any[]).map((a) => ({ ...a, client_name: a.clients?.name })) as unknown as Anamnesis[];
     },
     enabled: !!user,
   });
@@ -36,7 +36,7 @@ export function useAnamnesis(id: string | undefined) {
     queryFn: async () => {
       const { data, error } = await supabase.from("anamneses" as any).select("*, clients(name)").eq("id", id!).single();
       if (error) throw error;
-      return { ...data, client_name: (data as any).clients?.name } as Anamnesis;
+      return { ...data, client_name: (data as any).clients?.name } as unknown as Anamnesis;
     },
     enabled: !!id,
   });

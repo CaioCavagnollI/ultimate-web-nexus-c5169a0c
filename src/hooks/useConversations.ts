@@ -29,7 +29,7 @@ export function useConversations(mode?: "chat" | "mentor") {
       if (mode) q = q.eq("mode", mode);
       const { data, error } = await q;
       if (error) throw error;
-      return data as Conversation[];
+      return data as unknown as Conversation[];
     },
     enabled: !!user,
   });
@@ -41,7 +41,7 @@ export function useMessages(conversationId: string | undefined) {
     queryFn: async () => {
       const { data, error } = await supabase.from("messages" as any).select("*").eq("conversation_id", conversationId!).order("created_at");
       if (error) throw error;
-      return data as Message[];
+      return data as unknown as Message[];
     },
     enabled: !!conversationId,
   });
@@ -58,7 +58,7 @@ export function useCreateConversation() {
         mode: input.mode || "chat",
       } as any).select().single();
       if (error) throw error;
-      return data as Conversation;
+      return data as unknown as Conversation;
     },
     onSuccess: () => { qc.invalidateQueries({ queryKey: ["conversations"] }); },
     onError: (e: any) => toast.error(e.message),

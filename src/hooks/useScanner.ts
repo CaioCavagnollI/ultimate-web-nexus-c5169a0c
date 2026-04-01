@@ -22,7 +22,7 @@ export function useScannerResults() {
     queryFn: async () => {
       const { data, error } = await supabase.from("scanner_results" as any).select("*").order("created_at", { ascending: false });
       if (error) throw error;
-      return data as ScannerResult[];
+      return data as unknown as ScannerResult[];
     },
     enabled: !!user,
   });

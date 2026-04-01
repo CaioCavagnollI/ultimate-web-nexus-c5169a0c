@@ -23,7 +23,7 @@ export function useClients() {
     queryFn: async () => {
       const { data, error } = await supabase.from("clients" as any).select("*").order("name");
       if (error) throw error;
-      return data as Client[];
+      return data as unknown as Client[];
     },
     enabled: !!user,
   });
@@ -35,7 +35,7 @@ export function useClient(id: string | undefined) {
     queryFn: async () => {
       const { data, error } = await supabase.from("clients" as any).select("*").eq("id", id!).single();
       if (error) throw error;
-      return data as Client;
+      return data as unknown as Client;
     },
     enabled: !!id,
   });
