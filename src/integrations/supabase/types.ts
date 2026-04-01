@@ -14,6 +14,285 @@ export type Database = {
   }
   public: {
     Tables: {
+      anamneses: {
+        Row: {
+          client_id: string | null
+          created_at: string
+          data: Json
+          id: string
+          status: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          client_id?: string | null
+          created_at?: string
+          data?: Json
+          id?: string
+          status?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          client_id?: string | null
+          created_at?: string
+          data?: Json
+          id?: string
+          status?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "anamneses_client_id_fkey"
+            columns: ["client_id"]
+            isOneToOne: false
+            referencedRelation: "clients"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      clients: {
+        Row: {
+          birth_date: string | null
+          created_at: string
+          email: string | null
+          id: string
+          name: string
+          notes: string | null
+          phone: string | null
+          sex: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          birth_date?: string | null
+          created_at?: string
+          email?: string | null
+          id?: string
+          name: string
+          notes?: string | null
+          phone?: string | null
+          sex?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          birth_date?: string | null
+          created_at?: string
+          email?: string | null
+          id?: string
+          name?: string
+          notes?: string | null
+          phone?: string | null
+          sex?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      conversations: {
+        Row: {
+          created_at: string
+          id: string
+          mode: string
+          title: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          mode?: string
+          title?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          mode?: string
+          title?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      messages: {
+        Row: {
+          content: string
+          conversation_id: string
+          created_at: string
+          id: string
+          role: string
+        }
+        Insert: {
+          content: string
+          conversation_id: string
+          created_at?: string
+          id?: string
+          role?: string
+        }
+        Update: {
+          content?: string
+          conversation_id?: string
+          created_at?: string
+          id?: string
+          role?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "messages_conversation_id_fkey"
+            columns: ["conversation_id"]
+            isOneToOne: false
+            referencedRelation: "conversations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      plans: {
+        Row: {
+          created_at: string
+          features: Json | null
+          id: string
+          interval: string
+          name: string
+          price: number
+        }
+        Insert: {
+          created_at?: string
+          features?: Json | null
+          id?: string
+          interval?: string
+          name: string
+          price?: number
+        }
+        Update: {
+          created_at?: string
+          features?: Json | null
+          id?: string
+          interval?: string
+          name?: string
+          price?: number
+        }
+        Relationships: []
+      }
+      prescription_exercises: {
+        Row: {
+          day_label: string | null
+          id: string
+          load: string | null
+          name: string
+          notes: string | null
+          prescription_id: string
+          reps: string
+          rest_seconds: number | null
+          rir: string | null
+          rpe: string | null
+          sets: number
+          sort_order: number
+        }
+        Insert: {
+          day_label?: string | null
+          id?: string
+          load?: string | null
+          name: string
+          notes?: string | null
+          prescription_id: string
+          reps?: string
+          rest_seconds?: number | null
+          rir?: string | null
+          rpe?: string | null
+          sets?: number
+          sort_order?: number
+        }
+        Update: {
+          day_label?: string | null
+          id?: string
+          load?: string | null
+          name?: string
+          notes?: string | null
+          prescription_id?: string
+          reps?: string
+          rest_seconds?: number | null
+          rir?: string | null
+          rpe?: string | null
+          sets?: number
+          sort_order?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "prescription_exercises_prescription_id_fkey"
+            columns: ["prescription_id"]
+            isOneToOne: false
+            referencedRelation: "prescriptions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      prescriptions: {
+        Row: {
+          anamnesis_id: string | null
+          client_id: string | null
+          created_at: string
+          duration_weeks: number | null
+          frequency_per_week: number | null
+          id: string
+          notes: string | null
+          split: string | null
+          status: string
+          title: string
+          updated_at: string
+          user_id: string
+          version: number
+        }
+        Insert: {
+          anamnesis_id?: string | null
+          client_id?: string | null
+          created_at?: string
+          duration_weeks?: number | null
+          frequency_per_week?: number | null
+          id?: string
+          notes?: string | null
+          split?: string | null
+          status?: string
+          title?: string
+          updated_at?: string
+          user_id: string
+          version?: number
+        }
+        Update: {
+          anamnesis_id?: string | null
+          client_id?: string | null
+          created_at?: string
+          duration_weeks?: number | null
+          frequency_per_week?: number | null
+          id?: string
+          notes?: string | null
+          split?: string | null
+          status?: string
+          title?: string
+          updated_at?: string
+          user_id?: string
+          version?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "prescriptions_anamnesis_id_fkey"
+            columns: ["anamnesis_id"]
+            isOneToOne: false
+            referencedRelation: "anamneses"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "prescriptions_client_id_fkey"
+            columns: ["client_id"]
+            isOneToOne: false
+            referencedRelation: "clients"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       profiles: {
         Row: {
           avatar_url: string | null
@@ -43,6 +322,86 @@ export type Database = {
           user_id?: string
         }
         Relationships: []
+      }
+      scanner_results: {
+        Row: {
+          classification: string | null
+          confidence: number | null
+          created_at: string
+          equipment_name: string | null
+          exercises: string[] | null
+          id: string
+          image_url: string | null
+          muscles: string[] | null
+          user_id: string
+        }
+        Insert: {
+          classification?: string | null
+          confidence?: number | null
+          created_at?: string
+          equipment_name?: string | null
+          exercises?: string[] | null
+          id?: string
+          image_url?: string | null
+          muscles?: string[] | null
+          user_id: string
+        }
+        Update: {
+          classification?: string | null
+          confidence?: number | null
+          created_at?: string
+          equipment_name?: string | null
+          exercises?: string[] | null
+          id?: string
+          image_url?: string | null
+          muscles?: string[] | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      session_sets: {
+        Row: {
+          completed: boolean
+          exercise_name: string
+          id: string
+          load_kg: number | null
+          reps: number | null
+          rir: number | null
+          rpe: number | null
+          session_id: string
+          set_number: number
+        }
+        Insert: {
+          completed?: boolean
+          exercise_name: string
+          id?: string
+          load_kg?: number | null
+          reps?: number | null
+          rir?: number | null
+          rpe?: number | null
+          session_id: string
+          set_number?: number
+        }
+        Update: {
+          completed?: boolean
+          exercise_name?: string
+          id?: string
+          load_kg?: number | null
+          reps?: number | null
+          rir?: number | null
+          rpe?: number | null
+          session_id?: string
+          set_number?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "session_sets_session_id_fkey"
+            columns: ["session_id"]
+            isOneToOne: false
+            referencedRelation: "training_sessions"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       store_products: {
         Row: {
@@ -120,6 +479,92 @@ export type Database = {
             columns: ["product_id"]
             isOneToOne: false
             referencedRelation: "store_products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      subscriptions: {
+        Row: {
+          created_at: string
+          expires_at: string | null
+          id: string
+          plan_id: string | null
+          status: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          expires_at?: string | null
+          id?: string
+          plan_id?: string | null
+          status?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          expires_at?: string | null
+          id?: string
+          plan_id?: string | null
+          status?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "subscriptions_plan_id_fkey"
+            columns: ["plan_id"]
+            isOneToOne: false
+            referencedRelation: "plans"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      training_sessions: {
+        Row: {
+          client_id: string | null
+          created_at: string
+          date: string
+          duration_minutes: number | null
+          id: string
+          notes: string | null
+          prescription_id: string | null
+          status: string
+          user_id: string
+        }
+        Insert: {
+          client_id?: string | null
+          created_at?: string
+          date?: string
+          duration_minutes?: number | null
+          id?: string
+          notes?: string | null
+          prescription_id?: string | null
+          status?: string
+          user_id: string
+        }
+        Update: {
+          client_id?: string | null
+          created_at?: string
+          date?: string
+          duration_minutes?: number | null
+          id?: string
+          notes?: string | null
+          prescription_id?: string | null
+          status?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "training_sessions_client_id_fkey"
+            columns: ["client_id"]
+            isOneToOne: false
+            referencedRelation: "clients"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "training_sessions_prescription_id_fkey"
+            columns: ["prescription_id"]
+            isOneToOne: false
+            referencedRelation: "prescriptions"
             referencedColumns: ["id"]
           },
         ]
