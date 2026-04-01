@@ -38,11 +38,11 @@ export function useCreateAnamnesis() {
   const qc = useQueryClient();
   const { user } = useAuth();
   return useMutation({
-    mutationFn: async (input: { client_id?: string; data: Record<string, unknown>; status?: string }) => {
+    mutationFn: async (input: { client_id?: string; data: Record<string, Json | undefined>; status?: string }) => {
       const { data, error } = await supabase.from("anamneses").insert({
         user_id: user!.id,
         client_id: input.client_id || null,
-        data: input.data,
+        data: input.data as Json,
         status: input.status || "draft",
       }).select().single();
       if (error) throw error;
