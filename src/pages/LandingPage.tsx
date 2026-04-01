@@ -7,16 +7,17 @@ import {
   Zap, Target, Award, ChevronRight, Check
 } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
+import nexusLogo from "@/assets/nexus-logo.jpg";
 
 const features = [
   { icon: Brain, title: "Atlas IA", desc: "Assistente científico com IA para treinamento de força — chat, mentor, prescrição e pesquisa" },
   { icon: Scan, title: "Atlas Scanner", desc: "Identifica equipamentos via visão computacional e retorna exercícios com evidência" },
   { icon: FileText, title: "Prescrição IA", desc: "Prescrições auditáveis baseadas em anamnese + evidência científica" },
-  { icon: FlaskConical, title: "Nexus Lab", desc: "Calculadoras RPE, %RM, volume, dose-resposta, TMB, TDEE e macros" },
+  { icon: FlaskConical, title: "Atlas Lab", desc: "Calculadoras RPE, %RM, volume, dose-resposta, TMB, TDEE e macros" },
   { icon: ClipboardList, title: "Anamnese Smart", desc: "Avaliação estruturada em 6 etapas com score de qualidade e integração com prescrição" },
   { icon: Activity, title: "Performance", desc: "Métricas, logbook, insights, leaderboards e desafios de performance" },
   { icon: GraduationCap, title: "Acadêmico", desc: "Pesquisa, DOIs, PubMed e Crossref integrados com IA" },
-  { icon: Crown, title: "Nexus Premium", desc: "Mentorias Pro com profissionais certificados em 4 especialidades" },
+  { icon: Crown, title: "Mentoria Prime", desc: "Mentorias profissionais exclusivas para assinantes Pro+" },
 ];
 
 const stats = [
@@ -27,7 +28,7 @@ const stats = [
 ];
 
 const plans = [
-  { name: "Free", price: "R$ 0", period: "/mês", features: ["Atlas Chat básico", "Feed Científico", "Nexus Lab", "3 prescrições/mês"], highlight: false },
+  { name: "Free", price: "R$ 0", period: "/mês", features: ["Atlas Chat básico", "Feed Científico", "Atlas Lab", "3 prescrições/mês"], highlight: false },
   { name: "Pro", price: "R$ 49", period: "/mês", features: ["Atlas IA completo", "Scanner ilimitado", "Prescrições ilimitadas", "Anamnese Smart", "Performance analytics", "Suporte prioritário"], highlight: true },
   { name: "Business", price: "R$ 149", period: "/mês", features: ["Tudo do Pro", "Multi-workspace", "API access", "White-label", "Analytics avançado", "Onboarding dedicado"], highlight: false },
 ];
@@ -47,8 +48,8 @@ export default function LandingPage() {
       {/* Navbar */}
       <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-border/50">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="w-9 h-9 rounded-lg gold-gradient flex items-center justify-center font-display font-bold text-primary-foreground text-xl">N</div>
+          <div className="flex items-center gap-2.5">
+            <img src={nexusLogo} alt="Nexus Atlas" className="w-9 h-9 rounded-lg object-cover" />
             <div className="flex flex-col">
               <span className="font-display font-bold text-xl leading-tight">Nexus</span>
               <span className="text-[7px] text-muted-foreground/60 font-sans tracking-widest uppercase leading-none">Powered by Atlas</span>
@@ -244,7 +245,7 @@ export default function LandingPage() {
           <div className="grid md:grid-cols-4 gap-12">
             <div>
               <div className="flex items-center gap-2 mb-4">
-                <div className="w-9 h-9 rounded-lg gold-gradient flex items-center justify-center font-display font-bold text-primary-foreground text-xl">N</div>
+                <img src={nexusLogo} alt="Nexus Atlas" className="w-9 h-9 rounded-lg object-cover" />
                 <div className="flex flex-col">
                   <span className="font-display font-bold text-xl leading-tight">Nexus</span>
                   <span className="text-[7px] text-muted-foreground/60 font-sans tracking-widest uppercase leading-none">Powered by Atlas</span>

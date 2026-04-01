@@ -5,12 +5,13 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { AuthProvider } from "@/hooks/useAuth";
 import ProtectedRoute from "@/components/ProtectedRoute";
+import AdminRoute from "@/components/AdminRoute";
+import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { lazy, Suspense } from "react";
 
 import PublicLayout from "./components/PublicLayout";
 import Layout from "./components/Layout";
 
-// Loading fallback
 const Loading = () => (
   <div className="min-h-screen flex items-center justify-center bg-background">
     <div className="w-8 h-8 rounded-lg gold-gradient flex items-center justify-center font-display font-bold text-primary-foreground text-lg animate-pulse">N</div>
@@ -41,7 +42,7 @@ const ProfilePage = lazy(() => import("./pages/ProfilePage"));
 const SettingsPage = lazy(() => import("./pages/SettingsPage"));
 const PricingPage = lazy(() => import("./pages/PricingPage"));
 
-// Atlas IA
+// Atlas Brain
 const AtlasHubPage = lazy(() => import("./pages/atlas/AtlasHubPage"));
 const AtlasChatPage = lazy(() => import("./pages/atlas/AtlasChatPage"));
 const AtlasAssistantPage = lazy(() => import("./pages/atlas/AtlasAssistantPage"));
@@ -49,13 +50,8 @@ const AtlasExplainPage = lazy(() => import("./pages/atlas/AtlasExplainPage"));
 const AtlasMentorPage = lazy(() => import("./pages/atlas/AtlasMentorPage"));
 const AtlasResearchPage = lazy(() => import("./pages/atlas/AtlasResearchPage"));
 const AtlasPrescriptionPage = lazy(() => import("./pages/atlas/AtlasPrescriptionPage"));
-const AtlasSpeakPage = lazy(() => import("./pages/atlas/AtlasSpeakPage"));
 
-// AI Mentor & Chat (legacy)
-const AIMentorPage = lazy(() => import("./pages/AIMentorPage"));
-const ChatPage = lazy(() => import("./pages/ChatPage"));
-
-// Scanner
+// Atlas Scanner
 const ScannerHubPage = lazy(() => import("./pages/scanner/ScannerHubPage"));
 const ScannerHistoryPage = lazy(() => import("./pages/scanner/ScannerHistoryPage"));
 const ScannerResultPage = lazy(() => import("./pages/scanner/ScannerResultPage"));
@@ -63,27 +59,27 @@ const ScannerVisionPage = lazy(() => import("./pages/scanner/ScannerVisionPage")
 const ScannerBiomechanicsPage = lazy(() => import("./pages/scanner/ScannerBiomechanicsPage"));
 const ScannerUploadsPage = lazy(() => import("./pages/scanner/ScannerUploadsPage"));
 
-// Anamnesis
+// Anamnese
 const AnamnesisListPage = lazy(() => import("./pages/anamnesis/AnamnesisListPage"));
 const AnamnesisNewPage = lazy(() => import("./pages/anamnesis/AnamnesisNewPage"));
 const AnamnesisImportPage = lazy(() => import("./pages/anamnesis/AnamnesisImportPage"));
 const AnamnesisDetailPage = lazy(() => import("./pages/anamnesis/AnamnesisDetailPage"));
 
-// Prescriptions
+// Prescrição de Treino
 const PrescriptionListPage = lazy(() => import("./pages/prescriptions/PrescriptionListPage"));
 const PrescriptionNewPage = lazy(() => import("./pages/prescriptions/PrescriptionNewPage"));
 const PrescriptionDetailPage = lazy(() => import("./pages/prescriptions/PrescriptionDetailPage"));
 const PrescriptionHistoryPage = lazy(() => import("./pages/prescriptions/PrescriptionHistoryPage"));
 const PrescriptionExportPage = lazy(() => import("./pages/prescriptions/PrescriptionExportPage"));
 
-// Training
+// Treinos
 const TrainingHubPage = lazy(() => import("./pages/training/TrainingHubPage"));
 const TrainingProgramsSubPage = lazy(() => import("./pages/training/TrainingProgramsSubPage"));
 const TrainingSessionPage = lazy(() => import("./pages/training/TrainingSessionPage"));
 const TrainingSummaryPage = lazy(() => import("./pages/training/TrainingSummaryPage"));
 const TrainingProgressPage = lazy(() => import("./pages/training/TrainingProgressPage"));
 
-// Lab
+// Atlas Lab
 const LabHubPage = lazy(() => import("./pages/lab/LabHubPage"));
 const LabRMPage = lazy(() => import("./pages/lab/LabRMPage"));
 const LabRPEPage = lazy(() => import("./pages/lab/LabRPEPage"));
@@ -94,28 +90,21 @@ const LabResearchPage = lazy(() => import("./pages/lab/LabResearchPage"));
 // Performance
 const PerformancePage = lazy(() => import("./pages/PerformancePage"));
 
-// Library & Academic
+// Biblioteca & Academic
 const LibraryPage = lazy(() => import("./pages/LibraryPage"));
 const AcademicPage = lazy(() => import("./pages/AcademicPage"));
 
-// Pro modules
+// Mentoria Prime
 const NexusPremiumPage = lazy(() => import("./pages/NexusPremiumPage"));
 const TrainingProPage = lazy(() => import("./pages/TrainingProPage"));
 const EditorialProPage = lazy(() => import("./pages/EditorialProPage"));
-const NutriProPage = lazy(() => import("./pages/NutriProPage"));
-const CoachProPage = lazy(() => import("./pages/CoachProPage"));
 
-// Other tools
+// Tools
 const StorePage = lazy(() => import("./pages/StorePage"));
 const TrainingProgramsPage = lazy(() => import("./pages/TrainingProgramsPage"));
-const ForumPage = lazy(() => import("./pages/ForumPage"));
 const UploadsPage = lazy(() => import("./pages/UploadsPage"));
-const AffiliatesPage = lazy(() => import("./pages/AffiliatesPage"));
 const ClientsPage = lazy(() => import("./pages/ClientsPage"));
 const BillingPage = lazy(() => import("./pages/BillingPage"));
-
-// Integrations
-const IntegrationsPage = lazy(() => import("./pages/IntegrationsPage"));
 
 // Admin
 const AdminPage = lazy(() => import("./pages/AdminPage"));
@@ -123,16 +112,12 @@ const AdminPage = lazy(() => import("./pages/AdminPage"));
 import NotFound from "./pages/NotFound";
 
 // Lazy sub-page loaders
-const LazyLabCalculators = lazy(() => import("./pages/lab/LabCalculators").then(m => ({ default: m.LabBMIPage })));
+const LazyLabBMI = lazy(() => import("./pages/lab/LabCalculators").then(m => ({ default: m.LabBMIPage })));
 const LazyLabBMR = lazy(() => import("./pages/lab/LabCalculators").then(m => ({ default: m.LabBMRPage })));
 const LazyLabMacros = lazy(() => import("./pages/lab/LabCalculators").then(m => ({ default: m.LabMacrosPage })));
 
-const LazyPerfFeed = lazy(() => import("./pages/performance/PerformanceSubPages").then(m => ({ default: m.PerformanceFeedPage })));
 const LazyPerfInsights = lazy(() => import("./pages/performance/PerformanceSubPages").then(m => ({ default: m.PerformanceInsightsPage })));
-const LazyPerfLeaderboards = lazy(() => import("./pages/performance/PerformanceSubPages").then(m => ({ default: m.PerformanceLeaderboardsPage })));
-const LazyPerfChallenges = lazy(() => import("./pages/performance/PerformanceSubPages").then(m => ({ default: m.PerformanceChallengesPage })));
 const LazyPerfLogbook = lazy(() => import("./pages/performance/PerformanceSubPages").then(m => ({ default: m.PerformanceLogbookPage })));
-const LazyPerfCards = lazy(() => import("./pages/performance/PerformanceSubPages").then(m => ({ default: m.PerformanceCardsPage })));
 
 const LazyLibFavorites = lazy(() => import("./pages/library/LibraryAcademicSubPages").then(m => ({ default: m.LibraryFavoritesPage })));
 const LazyLibDetail = lazy(() => import("./pages/library/LibraryAcademicSubPages").then(m => ({ default: m.LibraryDetailPage })));
@@ -143,10 +128,6 @@ const LazyAcademicPaper = lazy(() => import("./pages/library/LibraryAcademicSubP
 const LazyBillingSub = lazy(() => import("./pages/billing/BillingSubPages").then(m => ({ default: m.BillingSubscriptionPage })));
 const LazyBillingHist = lazy(() => import("./pages/billing/BillingSubPages").then(m => ({ default: m.BillingHistoryPage })));
 const LazyBillingEnt = lazy(() => import("./pages/billing/BillingSubPages").then(m => ({ default: m.BillingEntitlementsPage })));
-
-const LazyGarmin = lazy(() => import("./pages/integrations/IntegrationSubPages").then(m => ({ default: m.GarminPage })));
-const LazyGoogleFit = lazy(() => import("./pages/integrations/IntegrationSubPages").then(m => ({ default: m.GoogleFitPage })));
-const LazyStrava = lazy(() => import("./pages/integrations/IntegrationSubPages").then(m => ({ default: m.StravaPage })));
 
 const LazyAdminUsers = lazy(() => import("./pages/admin/AdminSubPages").then(m => ({ default: m.AdminUsersPage })));
 const LazyAdminUploads = lazy(() => import("./pages/admin/AdminSubPages").then(m => ({ default: m.AdminUploadsPage })));
@@ -162,6 +143,7 @@ const LazyAdminObservability = lazy(() => import("./pages/admin/AdminSubPages").
 const LazyAdminAudit = lazy(() => import("./pages/admin/AdminSubPages").then(m => ({ default: m.AdminAuditPage })));
 const LazyAdminSettings = lazy(() => import("./pages/admin/AdminSubPages").then(m => ({ default: m.AdminSettingsPage })));
 const LazyAdminExecutive = lazy(() => import("./pages/admin/AdminSubPages").then(m => ({ default: m.AdminExecutivePage })));
+const LazyAdminIntegrations = lazy(() => import("./pages/admin/AdminSubPages").then(m => ({ default: m.AdminIntegrationsPage })));
 
 const LazyBizHub = lazy(() => import("./pages/business/BusinessSubPages").then(m => ({ default: m.BusinessHubPage })));
 const LazyBizDashboard = lazy(() => import("./pages/business/BusinessSubPages").then(m => ({ default: m.BusinessDashboardPage })));
@@ -181,6 +163,7 @@ const S = ({ children }: { children: React.ReactNode }) => (
 );
 
 const App = () => (
+  <ErrorBoundary>
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
@@ -189,7 +172,7 @@ const App = () => (
         <AuthProvider>
           <Suspense fallback={<Loading />}>
             <Routes>
-              {/* Public routes with shared layout */}
+              {/* Public */}
               <Route path="/" element={<LandingPage />} />
               <Route path="/auth" element={<AuthPage />} />
               <Route element={<PublicLayout />}>
@@ -206,7 +189,7 @@ const App = () => (
                 <Route path="/privacy" element={<S><PrivacyPage /></S>} />
               </Route>
 
-              {/* Protected routes with sidebar layout */}
+              {/* Protected */}
               <Route element={<ProtectedRoute><Layout /></ProtectedRoute>}>
                 {/* Core */}
                 <Route path="/dashboard" element={<S><DashboardPage /></S>} />
@@ -216,7 +199,7 @@ const App = () => (
                 <Route path="/profile" element={<S><ProfilePage /></S>} />
                 <Route path="/settings" element={<S><SettingsPage /></S>} />
 
-                {/* Atlas IA */}
+                {/* Atlas Brain */}
                 <Route path="/atlas" element={<S><AtlasHubPage /></S>} />
                 <Route path="/atlas/chat" element={<S><AtlasChatPage /></S>} />
                 <Route path="/atlas/assistant" element={<S><AtlasAssistantPage /></S>} />
@@ -224,13 +207,8 @@ const App = () => (
                 <Route path="/atlas/mentor" element={<S><AtlasMentorPage /></S>} />
                 <Route path="/atlas/research" element={<S><AtlasResearchPage /></S>} />
                 <Route path="/atlas/prescription" element={<S><AtlasPrescriptionPage /></S>} />
-                <Route path="/atlas/speak" element={<S><AtlasSpeakPage /></S>} />
 
-                {/* Legacy AI routes */}
-                <Route path="/ai-mentor" element={<S><AIMentorPage /></S>} />
-                <Route path="/chat" element={<S><ChatPage /></S>} />
-
-                {/* Scanner */}
+                {/* Atlas Scanner */}
                 <Route path="/scanner" element={<S><ScannerHubPage /></S>} />
                 <Route path="/scanner/history" element={<S><ScannerHistoryPage /></S>} />
                 <Route path="/scanner/result" element={<S><ScannerResultPage /></S>} />
@@ -239,14 +217,14 @@ const App = () => (
                 <Route path="/scanner/biomechanics" element={<S><ScannerBiomechanicsPage /></S>} />
                 <Route path="/scanner/uploads" element={<S><ScannerUploadsPage /></S>} />
 
-                {/* Anamnesis */}
+                {/* Anamnese */}
                 <Route path="/anamnesis" element={<S><AnamnesisListPage /></S>} />
                 <Route path="/anamnesis/list" element={<S><AnamnesisListPage /></S>} />
                 <Route path="/anamnesis/new" element={<S><AnamnesisNewPage /></S>} />
                 <Route path="/anamnesis/import" element={<S><AnamnesisImportPage /></S>} />
                 <Route path="/anamnesis/:id" element={<S><AnamnesisDetailPage /></S>} />
 
-                {/* Prescriptions */}
+                {/* Prescrição de Treino */}
                 <Route path="/prescriptions" element={<S><PrescriptionListPage /></S>} />
                 <Route path="/prescriptions/list" element={<S><PrescriptionListPage /></S>} />
                 <Route path="/prescriptions/new" element={<S><PrescriptionNewPage /></S>} />
@@ -254,19 +232,19 @@ const App = () => (
                 <Route path="/prescriptions/export" element={<S><PrescriptionExportPage /></S>} />
                 <Route path="/prescriptions/:id" element={<S><PrescriptionDetailPage /></S>} />
 
-                {/* Training */}
+                {/* Treinos */}
                 <Route path="/training" element={<S><TrainingHubPage /></S>} />
                 <Route path="/training/programs" element={<S><TrainingProgramsSubPage /></S>} />
                 <Route path="/training/session" element={<S><TrainingSessionPage /></S>} />
                 <Route path="/training/summary" element={<S><TrainingSummaryPage /></S>} />
                 <Route path="/training/progress" element={<S><TrainingProgressPage /></S>} />
 
-                {/* Lab */}
+                {/* Atlas Lab */}
                 <Route path="/lab" element={<S><LabHubPage /></S>} />
                 <Route path="/lab/rm" element={<S><LabRMPage /></S>} />
                 <Route path="/lab/rpe" element={<S><LabRPEPage /></S>} />
                 <Route path="/lab/volume" element={<S><LabVolumePage /></S>} />
-                <Route path="/lab/bmi" element={<S><LazyLabCalculators /></S>} />
+                <Route path="/lab/bmi" element={<S><LazyLabBMI /></S>} />
                 <Route path="/lab/bmr" element={<S><LazyLabBMR /></S>} />
                 <Route path="/lab/tdee" element={<S><LazyLabBMR /></S>} />
                 <Route path="/lab/macros" element={<S><LazyLabMacros /></S>} />
@@ -275,14 +253,10 @@ const App = () => (
 
                 {/* Performance */}
                 <Route path="/performance" element={<S><PerformancePage /></S>} />
-                <Route path="/performance/feed" element={<S><LazyPerfFeed /></S>} />
                 <Route path="/performance/insights" element={<S><LazyPerfInsights /></S>} />
-                <Route path="/performance/leaderboards" element={<S><LazyPerfLeaderboards /></S>} />
-                <Route path="/performance/challenges" element={<S><LazyPerfChallenges /></S>} />
                 <Route path="/performance/logbook" element={<S><LazyPerfLogbook /></S>} />
-                <Route path="/performance/cards" element={<S><LazyPerfCards /></S>} />
 
-                {/* Library */}
+                {/* Biblioteca */}
                 <Route path="/library" element={<S><LibraryPage /></S>} />
                 <Route path="/library/favorites" element={<S><LazyLibFavorites /></S>} />
                 <Route path="/library/:id" element={<S><LazyLibDetail /></S>} />
@@ -293,19 +267,15 @@ const App = () => (
                 <Route path="/academic/saved" element={<S><LazyAcademicSaved /></S>} />
                 <Route path="/academic/paper/:id" element={<S><LazyAcademicPaper /></S>} />
 
-                {/* Pro modules */}
+                {/* Mentoria Prime */}
                 <Route path="/premium" element={<S><NexusPremiumPage /></S>} />
                 <Route path="/treinamento-pro" element={<S><TrainingProPage /></S>} />
                 <Route path="/editorial-pro" element={<S><EditorialProPage /></S>} />
-                <Route path="/nutricao-pro" element={<S><NutriProPage /></S>} />
-                <Route path="/coach-pro" element={<S><CoachProPage /></S>} />
 
                 {/* Tools */}
                 <Route path="/store" element={<S><StorePage /></S>} />
                 <Route path="/programs" element={<S><TrainingProgramsPage /></S>} />
-                <Route path="/forum" element={<S><ForumPage /></S>} />
                 <Route path="/uploads" element={<S><UploadsPage /></S>} />
-                <Route path="/affiliates" element={<S><AffiliatesPage /></S>} />
                 <Route path="/clients" element={<S><ClientsPage /></S>} />
 
                 {/* Billing */}
@@ -315,28 +285,23 @@ const App = () => (
                 <Route path="/billing/entitlements" element={<S><LazyBillingEnt /></S>} />
                 <Route path="/pricing" element={<S><PricingPage /></S>} />
 
-                {/* Integrations */}
-                <Route path="/integrations" element={<S><IntegrationsPage /></S>} />
-                <Route path="/integrations/garmin" element={<S><LazyGarmin /></S>} />
-                <Route path="/integrations/google-fit" element={<S><LazyGoogleFit /></S>} />
-                <Route path="/integrations/strava" element={<S><LazyStrava /></S>} />
-
                 {/* Admin */}
-                <Route path="/admin" element={<S><AdminPage /></S>} />
-                <Route path="/admin/users" element={<S><LazyAdminUsers /></S>} />
-                <Route path="/admin/uploads" element={<S><LazyAdminUploads /></S>} />
-                <Route path="/admin/library" element={<S><LazyAdminLibrary /></S>} />
-                <Route path="/admin/plans" element={<S><LazyAdminPlans /></S>} />
-                <Route path="/admin/products" element={<S><LazyAdminProducts /></S>} />
-                <Route path="/admin/store" element={<S><LazyAdminStore /></S>} />
-                <Route path="/admin/billing" element={<S><LazyAdminBilling /></S>} />
-                <Route path="/admin/payouts" element={<S><LazyAdminPayouts /></S>} />
-                <Route path="/admin/logs" element={<S><LazyAdminLogs /></S>} />
-                <Route path="/admin/health" element={<S><LazyAdminHealth /></S>} />
-                <Route path="/admin/observability" element={<S><LazyAdminObservability /></S>} />
-                <Route path="/admin/audit" element={<S><LazyAdminAudit /></S>} />
-                <Route path="/admin/settings" element={<S><LazyAdminSettings /></S>} />
-                <Route path="/admin/executive" element={<S><LazyAdminExecutive /></S>} />
+                <Route path="/admin" element={<AdminRoute><S><AdminPage /></S></AdminRoute>} />
+                <Route path="/admin/users" element={<AdminRoute><S><LazyAdminUsers /></S></AdminRoute>} />
+                <Route path="/admin/uploads" element={<AdminRoute><S><LazyAdminUploads /></S></AdminRoute>} />
+                <Route path="/admin/library" element={<AdminRoute><S><LazyAdminLibrary /></S></AdminRoute>} />
+                <Route path="/admin/plans" element={<AdminRoute><S><LazyAdminPlans /></S></AdminRoute>} />
+                <Route path="/admin/products" element={<AdminRoute><S><LazyAdminProducts /></S></AdminRoute>} />
+                <Route path="/admin/store" element={<AdminRoute><S><LazyAdminStore /></S></AdminRoute>} />
+                <Route path="/admin/billing" element={<AdminRoute><S><LazyAdminBilling /></S></AdminRoute>} />
+                <Route path="/admin/payouts" element={<AdminRoute><S><LazyAdminPayouts /></S></AdminRoute>} />
+                <Route path="/admin/logs" element={<AdminRoute><S><LazyAdminLogs /></S></AdminRoute>} />
+                <Route path="/admin/health" element={<AdminRoute><S><LazyAdminHealth /></S></AdminRoute>} />
+                <Route path="/admin/observability" element={<AdminRoute><S><LazyAdminObservability /></S></AdminRoute>} />
+                <Route path="/admin/audit" element={<AdminRoute><S><LazyAdminAudit /></S></AdminRoute>} />
+                <Route path="/admin/settings" element={<AdminRoute><S><LazyAdminSettings /></S></AdminRoute>} />
+                <Route path="/admin/executive" element={<AdminRoute><S><LazyAdminExecutive /></S></AdminRoute>} />
+                <Route path="/admin/integrations" element={<AdminRoute><S><LazyAdminIntegrations /></S></AdminRoute>} />
 
                 {/* Business */}
                 <Route path="/business" element={<S><LazyBizHub /></S>} />
@@ -358,6 +323,7 @@ const App = () => (
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
+  </ErrorBoundary>
 );
 
 export default App;
