@@ -50,6 +50,7 @@ const AtlasExplainPage = lazy(() => import("./pages/atlas/AtlasExplainPage"));
 const AtlasMentorPage = lazy(() => import("./pages/atlas/AtlasMentorPage"));
 const AtlasResearchPage = lazy(() => import("./pages/atlas/AtlasResearchPage"));
 const AtlasPrescriptionPage = lazy(() => import("./pages/atlas/AtlasPrescriptionPage"));
+const ArticleAnalyzerPage = lazy(() => import("./pages/atlas/ArticleAnalyzerPage"));
 
 // Atlas Scanner
 const ScannerHubPage = lazy(() => import("./pages/scanner/ScannerHubPage"));
@@ -208,6 +209,7 @@ const App = () => (
                 <Route path="/atlas/mentor" element={<S><AtlasMentorPage /></S>} />
                 <Route path="/atlas/research" element={<S><AtlasResearchPage /></S>} />
                 <Route path="/atlas/prescription" element={<S><AtlasPrescriptionPage /></S>} />
+                <Route path="/atlas/article-analyzer" element={<S><ArticleAnalyzerPage /></S>} />
 
                 {/* Atlas Scanner */}
                 <Route path="/scanner" element={<S><ScannerHubPage /></S>} />
