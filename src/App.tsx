@@ -50,6 +50,7 @@ const AtlasExplainPage = lazy(() => import("./pages/atlas/AtlasExplainPage"));
 const AtlasMentorPage = lazy(() => import("./pages/atlas/AtlasMentorPage"));
 const AtlasResearchPage = lazy(() => import("./pages/atlas/AtlasResearchPage"));
 const AtlasPrescriptionPage = lazy(() => import("./pages/atlas/AtlasPrescriptionPage"));
+const ArticleAnalyzerPage = lazy(() => import("./pages/atlas/ArticleAnalyzerPage"));
 
 // Atlas Scanner
 const ScannerHubPage = lazy(() => import("./pages/scanner/ScannerHubPage"));
