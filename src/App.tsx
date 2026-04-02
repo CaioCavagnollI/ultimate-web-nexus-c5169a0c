@@ -209,6 +209,7 @@ const App = () => (
                 <Route path="/atlas/mentor" element={<S><AtlasMentorPage /></S>} />
                 <Route path="/atlas/research" element={<S><AtlasResearchPage /></S>} />
                 <Route path="/atlas/prescription" element={<S><AtlasPrescriptionPage /></S>} />
+                <Route path="/atlas/article-analyzer" element={<S><ArticleAnalyzerPage /></S>} />
 
                 {/* Atlas Scanner */}
                 <Route path="/scanner" element={<S><ScannerHubPage /></S>} />
