@@ -62,7 +62,7 @@ export function BillingSubscriptionPage() {
               const isCurrent = (tier === "free" && plan.key === "free") ||
                 (tier === "pro" && plan.key === "pro_monthly") ||
                 (tier === "premium" && plan.key === "premium_monthly") ||
-                tier === "admin";
+                (tier as string) === "admin";
               return (
                 <div key={plan.key} className={`glass-card p-6 ${isCurrent ? "border-primary/50 gold-glow" : ""}`}>
                   {isCurrent && (
