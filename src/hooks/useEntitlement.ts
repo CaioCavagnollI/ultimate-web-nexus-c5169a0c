@@ -1,0 +1,88 @@
+import { useSubscription, PlanTier } from "@/hooks/useSubscription";
+
+// Feature access matrix by tier
+const TIER_LEVEL: Record<PlanTier, number> = {
+  free: 0,
+  pro: 1,
+  premium: 2,
+  admin: 3,
+};
+
+export type Feature =
+  | "atlas_chat"
+  | "atlas_mentor"
+  | "atlas_explain"
+  | "atlas_research"
+  | "atlas_prescription"
+  | "atlas_analyzer"
+  | "scanner_unlimited"
+  | "prescription_advanced"
+  | "performance_full"
+  | "library_full"
+  | "article_analyzer"
+  | "mentoria_premium"
+  | "editorial_tools"
+  | "admin_panel"
+  | "store_submit";
+
+// Minimum tier required for each feature
+const FEATURE_TIER: Record<Feature, PlanTier> = {
+  atlas_chat: "free",
+  atlas_mentor: "pro",
+  atlas_explain: "pro",
+  atlas_research: "premium",
+  atlas_prescription: "pro",
+  atlas_analyzer: "premium",
+  scanner_unlimited: "pro",
+  prescription_advanced: "pro",
+  performance_full: "pro",
+  library_full: "premium",
+  article_analyzer: "premium",
+  mentoria_premium: "premium",
+  editorial_tools: "premium",
+  admin_panel: "admin",
+  store_submit: "pro",
+};
+
+// Daily usage limits by tier
+const USAGE_LIMITS: Record<PlanTier, { ai_messages: number; scans: number; prescriptions: number }> = {
+  free: { ai_messages: 5, scans: 3, prescriptions: 3 },
+  pro: { ai_messages: 50, scans: -1, prescriptions: -1 },
+  premium: { ai_messages: -1, scans: -1, prescriptions: -1 },
+  admin: { ai_messages: -1, scans: -1, prescriptions: -1 },
+};
+
+export function useEntitlement() {
+  const { tier, loading, subscribed } = useSubscription();
+
+  const hasAccess = (feature: Feature): boolean => {
+    const requiredTier = FEATURE_TIER[feature];
+    return TIER_LEVEL[tier] >= TIER_LEVEL[requiredTier];
+  };
+
+  const getRequiredTier = (feature: Feature): PlanTier => {
+    return FEATURE_TIER[feature];
+  };
+
+  const getLimits = () => USAGE_LIMITS[tier];
+
+  const tierLabel = (t: PlanTier = tier): string => {
+    const labels: Record<PlanTier, string> = {
+      free: "Free",
+      pro: "Pro",
+      premium: "Premium",
+      admin: "Admin",
+    };
+    return labels[t];
+  };
+
+  return {
+    tier,
+    loading,
+    subscribed,
+    hasAccess,
+    getRequiredTier,
+    getLimits,
+    tierLabel,
+  };
+}
