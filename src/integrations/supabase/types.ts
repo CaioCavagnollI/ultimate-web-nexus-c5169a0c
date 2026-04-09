@@ -282,6 +282,83 @@ export type Database = {
         }
         Relationships: []
       }
+      billing_webhook_receipts: {
+        Row: {
+          event_type: string
+          id: string
+          payload: Json
+          processed_at: string | null
+          provider: string
+          provider_event_id: string
+          received_at: string
+          status: string
+        }
+        Insert: {
+          event_type: string
+          id?: string
+          payload?: Json
+          processed_at?: string | null
+          provider?: string
+          provider_event_id: string
+          received_at?: string
+          status?: string
+        }
+        Update: {
+          event_type?: string
+          id?: string
+          payload?: Json
+          processed_at?: string | null
+          provider?: string
+          provider_event_id?: string
+          received_at?: string
+          status?: string
+        }
+        Relationships: []
+      }
+      client_scanner_signals: {
+        Row: {
+          client_id: string
+          created_at: string
+          hinge_pattern_limited: boolean
+          id: string
+          knee_sensitive: boolean
+          lumbar_sensitive: boolean
+          shoulder_sensitive: boolean
+          squat_pattern_limited: boolean
+          user_id: string
+        }
+        Insert: {
+          client_id: string
+          created_at?: string
+          hinge_pattern_limited?: boolean
+          id?: string
+          knee_sensitive?: boolean
+          lumbar_sensitive?: boolean
+          shoulder_sensitive?: boolean
+          squat_pattern_limited?: boolean
+          user_id: string
+        }
+        Update: {
+          client_id?: string
+          created_at?: string
+          hinge_pattern_limited?: boolean
+          id?: string
+          knee_sensitive?: boolean
+          lumbar_sensitive?: boolean
+          shoulder_sensitive?: boolean
+          squat_pattern_limited?: boolean
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "client_scanner_signals_client_id_fkey"
+            columns: ["client_id"]
+            isOneToOne: false
+            referencedRelation: "clients"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       clients: {
         Row: {
           birth_date: string | null
@@ -409,6 +486,315 @@ export type Database = {
             columns: ["purchase_id"]
             isOneToOne: false
             referencedRelation: "store_purchases"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      digital_twin_snapshots: {
+        Row: {
+          adherence_score: number
+          client_id: string
+          created_at: string
+          fatigue_score: number
+          id: string
+          payload: Json
+          readiness_score: number
+          recovery_score: number
+          user_id: string
+        }
+        Insert: {
+          adherence_score?: number
+          client_id: string
+          created_at?: string
+          fatigue_score?: number
+          id?: string
+          payload?: Json
+          readiness_score?: number
+          recovery_score?: number
+          user_id: string
+        }
+        Update: {
+          adherence_score?: number
+          client_id?: string
+          created_at?: string
+          fatigue_score?: number
+          id?: string
+          payload?: Json
+          readiness_score?: number
+          recovery_score?: number
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "digital_twin_snapshots_client_id_fkey"
+            columns: ["client_id"]
+            isOneToOne: false
+            referencedRelation: "clients"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      engine_registry: {
+        Row: {
+          checksum: string | null
+          config: Json
+          created_at: string
+          engine_key: string
+          id: string
+          released_at: string | null
+          released_by: string | null
+          status: Database["public"]["Enums"]["engine_release_status"]
+          version: string
+        }
+        Insert: {
+          checksum?: string | null
+          config?: Json
+          created_at?: string
+          engine_key: string
+          id?: string
+          released_at?: string | null
+          released_by?: string | null
+          status?: Database["public"]["Enums"]["engine_release_status"]
+          version: string
+        }
+        Update: {
+          checksum?: string | null
+          config?: Json
+          created_at?: string
+          engine_key?: string
+          id?: string
+          released_at?: string | null
+          released_by?: string | null
+          status?: Database["public"]["Enums"]["engine_release_status"]
+          version?: string
+        }
+        Relationships: []
+      }
+      entitlement_grants: {
+        Row: {
+          active: boolean
+          code: string
+          created_at: string
+          ends_at: string | null
+          id: string
+          source_id: string | null
+          source_type: string
+          starts_at: string
+          user_id: string
+        }
+        Insert: {
+          active?: boolean
+          code: string
+          created_at?: string
+          ends_at?: string | null
+          id?: string
+          source_id?: string | null
+          source_type: string
+          starts_at?: string
+          user_id: string
+        }
+        Update: {
+          active?: boolean
+          code?: string
+          created_at?: string
+          ends_at?: string | null
+          id?: string
+          source_id?: string | null
+          source_type?: string
+          starts_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      entitlements: {
+        Row: {
+          code: string
+          created_at: string
+          id: string
+          source_ref: string | null
+          source_type: string
+          user_id: string
+        }
+        Insert: {
+          code: string
+          created_at?: string
+          id?: string
+          source_ref?: string | null
+          source_type?: string
+          user_id: string
+        }
+        Update: {
+          code?: string
+          created_at?: string
+          id?: string
+          source_ref?: string | null
+          source_type?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      execution_events: {
+        Row: {
+          created_at: string
+          event_name: string
+          execution_id: string
+          id: string
+          level: string
+          payload: Json
+        }
+        Insert: {
+          created_at?: string
+          event_name: string
+          execution_id: string
+          id?: string
+          level?: string
+          payload?: Json
+        }
+        Update: {
+          created_at?: string
+          event_name?: string
+          execution_id?: string
+          id?: string
+          level?: string
+          payload?: Json
+        }
+        Relationships: [
+          {
+            foreignKeyName: "execution_events_execution_id_fkey"
+            columns: ["execution_id"]
+            isOneToOne: false
+            referencedRelation: "executions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      executions: {
+        Row: {
+          actor_id: string
+          billing_result: string
+          client_id: string | null
+          correlation_id: string | null
+          created_at: string
+          engine_key: string
+          engine_version: string | null
+          error_code: string | null
+          error_message: string | null
+          fallback_engine_key: string | null
+          fallback_engine_version: string | null
+          finished_at: string | null
+          id: string
+          input: Json
+          mode: Database["public"]["Enums"]["execution_mode"]
+          output: Json
+          policy_result: Database["public"]["Enums"]["policy_decision"]
+          prescription_id: string | null
+          request_id: string | null
+          started_at: string | null
+          status: Database["public"]["Enums"]["execution_status"]
+        }
+        Insert: {
+          actor_id: string
+          billing_result?: string
+          client_id?: string | null
+          correlation_id?: string | null
+          created_at?: string
+          engine_key: string
+          engine_version?: string | null
+          error_code?: string | null
+          error_message?: string | null
+          fallback_engine_key?: string | null
+          fallback_engine_version?: string | null
+          finished_at?: string | null
+          id?: string
+          input?: Json
+          mode?: Database["public"]["Enums"]["execution_mode"]
+          output?: Json
+          policy_result?: Database["public"]["Enums"]["policy_decision"]
+          prescription_id?: string | null
+          request_id?: string | null
+          started_at?: string | null
+          status?: Database["public"]["Enums"]["execution_status"]
+        }
+        Update: {
+          actor_id?: string
+          billing_result?: string
+          client_id?: string | null
+          correlation_id?: string | null
+          created_at?: string
+          engine_key?: string
+          engine_version?: string | null
+          error_code?: string | null
+          error_message?: string | null
+          fallback_engine_key?: string | null
+          fallback_engine_version?: string | null
+          finished_at?: string | null
+          id?: string
+          input?: Json
+          mode?: Database["public"]["Enums"]["execution_mode"]
+          output?: Json
+          policy_result?: Database["public"]["Enums"]["policy_decision"]
+          prescription_id?: string | null
+          request_id?: string | null
+          started_at?: string | null
+          status?: Database["public"]["Enums"]["execution_status"]
+        }
+        Relationships: [
+          {
+            foreignKeyName: "executions_client_id_fkey"
+            columns: ["client_id"]
+            isOneToOne: false
+            referencedRelation: "clients"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "executions_prescription_id_fkey"
+            columns: ["prescription_id"]
+            isOneToOne: false
+            referencedRelation: "prescriptions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      exercises: {
+        Row: {
+          created_at: string
+          equipment: string | null
+          execution: string | null
+          id: string
+          name: string
+          primary_muscle: string | null
+          slug: string
+          updated_at: string
+          variation_of: string | null
+        }
+        Insert: {
+          created_at?: string
+          equipment?: string | null
+          execution?: string | null
+          id?: string
+          name: string
+          primary_muscle?: string | null
+          slug: string
+          updated_at?: string
+          variation_of?: string | null
+        }
+        Update: {
+          created_at?: string
+          equipment?: string | null
+          execution?: string | null
+          id?: string
+          name?: string
+          primary_muscle?: string | null
+          slug?: string
+          updated_at?: string
+          variation_of?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "exercises_variation_of_fkey"
+            columns: ["variation_of"]
+            isOneToOne: false
+            referencedRelation: "exercises"
             referencedColumns: ["id"]
           },
         ]
@@ -573,6 +959,57 @@ export type Database = {
         }
         Relationships: []
       }
+      policy_violations: {
+        Row: {
+          actor_id: string | null
+          client_id: string | null
+          created_at: string
+          decision: Database["public"]["Enums"]["policy_decision"]
+          execution_id: string | null
+          id: string
+          payload: Json
+          policy_name: string
+          reason: string | null
+        }
+        Insert: {
+          actor_id?: string | null
+          client_id?: string | null
+          created_at?: string
+          decision: Database["public"]["Enums"]["policy_decision"]
+          execution_id?: string | null
+          id?: string
+          payload?: Json
+          policy_name: string
+          reason?: string | null
+        }
+        Update: {
+          actor_id?: string | null
+          client_id?: string | null
+          created_at?: string
+          decision?: Database["public"]["Enums"]["policy_decision"]
+          execution_id?: string | null
+          id?: string
+          payload?: Json
+          policy_name?: string
+          reason?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "policy_violations_client_id_fkey"
+            columns: ["client_id"]
+            isOneToOne: false
+            referencedRelation: "clients"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "policy_violations_execution_id_fkey"
+            columns: ["execution_id"]
+            isOneToOne: false
+            referencedRelation: "executions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       prescription_exercises: {
         Row: {
           day_label: string | null
@@ -718,6 +1155,47 @@ export type Database = {
           user_id?: string
         }
         Relationships: []
+      }
+      progress_entries: {
+        Row: {
+          client_id: string
+          id: string
+          metric_type: string
+          metric_value: number | null
+          notes: string | null
+          recorded_at: string
+          unit: string | null
+          user_id: string
+        }
+        Insert: {
+          client_id: string
+          id?: string
+          metric_type: string
+          metric_value?: number | null
+          notes?: string | null
+          recorded_at?: string
+          unit?: string | null
+          user_id: string
+        }
+        Update: {
+          client_id?: string
+          id?: string
+          metric_type?: string
+          metric_value?: number | null
+          notes?: string | null
+          recorded_at?: string
+          unit?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "progress_entries_client_id_fkey"
+            columns: ["client_id"]
+            isOneToOne: false
+            referencedRelation: "clients"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       research_chunks: {
         Row: {
@@ -1353,6 +1831,16 @@ export type Database = {
     }
     Enums: {
       app_role: "admin" | "moderator" | "user"
+      engine_release_status: "draft" | "active" | "deprecated" | "rolled_back"
+      execution_mode: "sync" | "async"
+      execution_status:
+        | "queued"
+        | "running"
+        | "success"
+        | "error"
+        | "fallback_success"
+        | "blocked"
+      policy_decision: "allow" | "deny" | "degrade" | "require_manual_review"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -1481,6 +1969,17 @@ export const Constants = {
   public: {
     Enums: {
       app_role: ["admin", "moderator", "user"],
+      engine_release_status: ["draft", "active", "deprecated", "rolled_back"],
+      execution_mode: ["sync", "async"],
+      execution_status: [
+        "queued",
+        "running",
+        "success",
+        "error",
+        "fallback_success",
+        "blocked",
+      ],
+      policy_decision: ["allow", "deny", "degrade", "require_manual_review"],
     },
   },
 } as const

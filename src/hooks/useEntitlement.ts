@@ -1,4 +1,7 @@
 import { useSubscription, PlanTier } from "@/hooks/useSubscription";
+import { supabase } from "@/integrations/supabase/client";
+import { useAuth } from "@/hooks/useAuth";
+import { useQuery } from "@tanstack/react-query";
 
 // Feature access matrix by tier
 const TIER_LEVEL: Record<PlanTier, number> = {
@@ -44,6 +47,25 @@ const FEATURE_TIER: Record<Feature, PlanTier> = {
   store_submit: "pro",
 };
 
+// Feature → entitlement_grants code mapping
+const FEATURE_GRANT_CODE: Record<Feature, string> = {
+  atlas_chat: "atlas-chat",
+  atlas_mentor: "atlas-mentor",
+  atlas_explain: "atlas-explain",
+  atlas_research: "atlas-research",
+  atlas_prescription: "atlas-prescription",
+  atlas_analyzer: "atlas-analyzer",
+  scanner_unlimited: "scanner",
+  prescription_advanced: "prescription-generate",
+  performance_full: "performance_full",
+  library_full: "library_full",
+  article_analyzer: "atlas-analyzer",
+  mentoria_premium: "mentoria_premium",
+  editorial_tools: "atlas-editorial",
+  admin_panel: "admin_panel",
+  store_submit: "store_submit",
+};
+
 // Daily usage limits by tier
 const USAGE_LIMITS: Record<PlanTier, { ai_messages: number; scans: number; prescriptions: number }> = {
   free: { ai_messages: 5, scans: 3, prescriptions: 3 },
@@ -54,10 +76,43 @@ const USAGE_LIMITS: Record<PlanTier, { ai_messages: number; scans: number; presc
 
 export function useEntitlement() {
   const { tier, loading, subscribed } = useSubscription();
+  const { user } = useAuth();
+
+  // Fetch active entitlement grants from DB
+  const { data: grants } = useQuery({
+    queryKey: ["entitlement_grants", user?.id],
+    queryFn: async () => {
+      if (!user) return [];
+      const { data } = await supabase
+        .from("entitlement_grants")
+        .select("code, active, ends_at")
+        .eq("user_id", user.id)
+        .eq("active", true);
+      return data || [];
+    },
+    enabled: !!user,
+    staleTime: 60_000,
+  });
+
+  const hasGrant = (code: string): boolean => {
+    if (!grants) return false;
+    return grants.some((g) => {
+      if (g.code !== code && g.code !== "all") return false;
+      if (!g.ends_at) return true;
+      return new Date(g.ends_at) > new Date();
+    });
+  };
 
   const hasAccess = (feature: Feature): boolean => {
+    // Check tier-based access first
     const requiredTier = FEATURE_TIER[feature];
-    return TIER_LEVEL[tier] >= TIER_LEVEL[requiredTier];
+    if (TIER_LEVEL[tier] >= TIER_LEVEL[requiredTier]) return true;
+
+    // Check entitlement grants (overrides tier for specific features)
+    const grantCode = FEATURE_GRANT_CODE[feature];
+    if (grantCode && hasGrant(grantCode)) return true;
+
+    return false;
   };
 
   const getRequiredTier = (feature: Feature): PlanTier => {
@@ -84,5 +139,6 @@ export function useEntitlement() {
     getRequiredTier,
     getLimits,
     tierLabel,
+    hasGrant,
   };
 }
