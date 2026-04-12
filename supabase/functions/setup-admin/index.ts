@@ -15,8 +15,16 @@ Deno.serve(async (req) => {
     const serviceRoleKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
     const supabase = createClient(supabaseUrl, serviceRoleKey);
 
-    const adminEmail = "admin@nexus.altas221177";
-    const adminPassword = "admin2211777_";
+    // Read admin credentials from environment - never hardcode
+    const adminEmail = Deno.env.get("ADMIN_EMAIL");
+    const adminPassword = Deno.env.get("ADMIN_PASSWORD");
+
+    if (!adminEmail || !adminPassword) {
+      return new Response(
+        JSON.stringify({ success: false, error: "ADMIN_EMAIL and ADMIN_PASSWORD secrets must be configured" }),
+        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
 
     // Check if admin already exists
     const { data: existingUsers } = await supabase.auth.admin.listUsers();
@@ -26,13 +34,11 @@ Deno.serve(async (req) => {
 
     if (existingAdmin) {
       adminUserId = existingAdmin.id;
-      // Update password
       await supabase.auth.admin.updateUserById(adminUserId, {
         password: adminPassword,
         email_confirm: true,
       });
     } else {
-      // Create admin user
       const { data: newUser, error: createError } = await supabase.auth.admin.createUser({
         email: adminEmail,
         password: adminPassword,
@@ -76,7 +82,7 @@ Deno.serve(async (req) => {
     }
 
     return new Response(
-      JSON.stringify({ success: true, message: "Admin configurado com sucesso", userId: adminUserId }),
+      JSON.stringify({ success: true, message: "Admin configurado com sucesso" }),
       { headers: { ...corsHeaders, "Content-Type": "application/json" } }
     );
   } catch (error) {
